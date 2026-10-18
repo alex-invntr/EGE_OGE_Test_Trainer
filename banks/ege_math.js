@@ -1,4 +1,5 @@
 // Банк задач: ЕГЭ · математика, профильный уровень (11 класс). Формат описан в banks/README.md.
+// © 2026 alex-invntr. Лицензия CC BY 4.0: https://creativecommons.org/licenses/by/4.0/deed.ru
 // Объект — строгий JSON: его же читают скрипты проверки из tools/. Ответы пересчитывает tools/check_ege_math.py.
 var BANKS = BANKS || {};
 BANKS["ege_math"] = {
