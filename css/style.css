@@ -231,7 +231,7 @@ table.res th { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase
 
 /* ---------- Кнопка «Как заниматься» в шапке главной ---------- */
 .hero > div { flex: 1 1 220px; min-width: 0; }
-.hero-btn { margin-left: auto; flex: none; padding: 12px 20px; border-radius: 10px; background: var(--btn); color: #fff; text-decoration: none; font-weight: 700; font-size: 16px; box-shadow: 2px 2px 0 var(--shadow); }
+.hero-btn { margin-left: auto; flex: none; padding: 12px 20px; line-height: 22px; box-sizing: border-box; height: 46px; border-radius: 10px; background: var(--btn); color: #fff; text-decoration: none; font-weight: 700; font-size: 16px; box-shadow: 2px 2px 0 var(--shadow); }
 .hero-btn:hover { filter: brightness(1.15); }
 
 /* ---------- Страница «Как заниматься» ---------- */
@@ -249,10 +249,15 @@ table.res th { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase
 }
 
 /* ---------- Переключатель темы ---------- */
-.theme-btn { padding: 8px 14px; border: 0; border-radius: 8px; background: var(--btn); color: #fff; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap; box-shadow: 2px 2px 0 var(--shadow); }
-.theme-btn:hover { filter: brightness(1.15); }
-/* в шапке главной переключатель — такая же кнопка, как «Как заниматься» */
-.hero .theme-btn { flex: none; padding: 12px 20px; border-radius: 10px; font-size: 16px; }
+/* Переключатель темы — квадратик той темы, которую включит: светлый с солнцем или тёмный с луной (цвета не зависят от темы) */
+.theme-btn { flex: none; width: 36px; height: 36px; padding: 0; display: inline-flex; align-items: center; justify-content: center; border-radius: 8px; cursor: pointer; box-shadow: 2px 2px 0 var(--shadow); }
+.theme-btn svg { width: 20px; height: 20px; display: block; }
+.theme-btn.to-light { background: #F7F9FC; border: 1px solid #B4C3D8; }
+.theme-btn.to-dark { background: #0F1724; border: 1px solid #33445E; }
+.theme-btn:hover { filter: brightness(1.08); }
+/* в шапке главной — той же высоты, что «Как заниматься» */
+.hero .theme-btn { width: 46px; height: 46px; border-radius: 10px; }
+.hero .theme-btn svg { width: 24px; height: 24px; }
 .side-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; }
 .page-top { display: flex; justify-content: space-between; align-items: center; gap: 8px; flex-wrap: wrap; }
 
@@ -274,7 +279,8 @@ table.res th { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase
     .sources { grid-template-columns: 1fr; }
 }
 @media (max-width: 700px) {
-    .hero .hero-btn, .hero .theme-btn { flex: 1 1 140px; margin-left: 0; text-align: center; }
+    .hero .hero-btn { flex: 1 1 140px; margin-left: 0; text-align: center; }
+    .hero .theme-btn { flex: none; }
 }
 
 /* Примеры-снимки в теме сайта: в тёмной видны тёмные, в светлой — светлые */
