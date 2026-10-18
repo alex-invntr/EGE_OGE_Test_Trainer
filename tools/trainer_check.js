@@ -282,6 +282,18 @@ async function main() {
     const broken = await page.evaluate(() => Array.from(document.images).filter((im) => !im.naturalWidth).map((im) => im.getAttribute("src")));
     check(howto.imgs >= 9 && broken.length === 0, `«Как заниматься»: картинок ${howto.imgs}, не загрузились: ${broken.join(", ")}`);
     check(ids.every((id) => howto.links.includes(id)), `«Как заниматься»: ссылки на все банки (${howto.links.length})`);
+    // примеры-снимки — в теме сайта: в тёмной видны тёмные, в светлой светлые (кроме раздела про тему)
+    const themed = await page.evaluate(() => {
+        const res = {};
+        for (const theme of ["dark", "light"]) {
+            document.documentElement.setAttribute("data-theme", theme);
+            const visible = Array.from(document.images).filter((im) => im.offsetParent !== null && !im.closest("#theme-shots"));
+            res[theme] = { n: visible.length, ok: visible.every((im) => im.getAttribute("src").includes("/" + theme + "/")) };
+        }
+        document.documentElement.setAttribute("data-theme", "dark");
+        return res;
+    });
+    check(themed.dark.ok && themed.light.ok && themed.dark.n === themed.light.n && themed.dark.n >= 9, `«Как заниматься»: снимки в теме сайта (тёмных ${themed.dark.n}, светлых ${themed.light.n})`);
     // тема: тёмная по умолчанию, переключатель запоминает светлую
     await page.goto(ROOT_URL + "index.html");
     const theme0 = await page.evaluate(() => document.documentElement.getAttribute("data-theme"));

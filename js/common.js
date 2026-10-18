@@ -16,7 +16,7 @@ const BANK_IDS = Object.keys(EXAMS).flatMap((e) => Object.keys(SUBJECTS).map((s)
 const STORAGE_PREFIX = "ege_oge_trainer_v1:";
 const REVIEW_DAYS = [1, 3, 7, 14];                          // интервалы повторения ошибок, дни
 const DAY_MS = 86400000;
-const ASSET_VERSION = "202610181837";                                // версия файлов для кэша браузера; ставит tools/set_version.py
+const ASSET_VERSION = "202610181842";                                // версия файлов для кэша браузера; ставит tools/set_version.py
 
 
 
@@ -153,15 +153,20 @@ function kimNumber(format) {
 
 
 
-// Сетка ссылок на внешние базы всех предметов (главная, методика)
+// Сетка ссылок на внешние базы (главная, методика): строка ОГЭ, строка ЕГЭ — колонки по предметам;
+// дополнительные базы (КЕГЭ) — отдельной строкой ровно под своим предметом
 function renderSourcesGrid(elId) {
     const box = document.getElementById(elId);
     if (!box) {
         return;
     }
-    box.innerHTML = BANK_IDS.flatMap((id) => {
+    const columns = Object.keys(SUBJECTS);
+    const cell = (id, src, extra) => {
         const [examKey, subjKey] = id.split("_");
-        return (SOURCES[id] || []).map((s) => `<a href="${s.url}" target="_blank" rel="noopener" style="--c:${SUBJECTS[subjKey].color}">` +
-            `${esc(s.name)} ↗<small>${EXAMS[examKey].name} · ${SUBJECTS[subjKey].name}</small></a>`);
-    }).join("");
+        return `<a class="${extra ? "extra" : ""}" href="${src.url}" target="_blank" rel="noopener" style="--c:${SUBJECTS[subjKey].color};--col:${columns.indexOf(subjKey) + 1}">` +
+            `${esc(src.name)} ↗<small>${EXAMS[examKey].name} · ${SUBJECTS[subjKey].name}</small></a>`;
+    };
+    const main = BANK_IDS.filter((id) => SOURCES[id] && SOURCES[id].length).map((id) => cell(id, SOURCES[id][0], false));
+    const extra = BANK_IDS.flatMap((id) => (SOURCES[id] || []).slice(1).map((src) => cell(id, src, true)));
+    box.innerHTML = main.concat(extra).join("");
 }

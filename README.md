@@ -7,7 +7,11 @@
 
 Без установки и регистрации: обычные HTML-страницы, работают в браузере на компьютере и на телефоне, в том числе без интернета. Прогресс хранится в браузере ученика.
 
-![Главная страница: выбор экзамена и предмета, прогресс по каждому](screenshots/01_home.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/01_home.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/01_home.png">
+  <img src="screenshots/light/01_home.png" alt="Главная страница: выбор экзамена и предмета, прогресс по каждому">
+</picture>
 
 ## Предметы
 
@@ -39,39 +43,67 @@
 
 Решение открывается только после попытки. После ошибки появляется первая подсказка, всего их три: идея, план, почти решение.
 
-![Задача по геометрии: неверный ответ и первая подсказка](screenshots/02_task_hint.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/02_task_hint.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/02_task_hint.png">
+  <img src="screenshots/light/02_task_hint.png" alt="Задача по геометрии: неверный ответ и первая подсказка">
+</picture>
 
 ### «Спросить ИИ»: наводящие вопросы вместо готового ответа
 
 Кнопка собирает готовый запрос с условием задачи и ответом ученика. Его копируют в [Claude](https://claude.ai) или другой ИИ-помощник. В запросе прямо сказано: не называть ответ, задать один наводящий вопрос и проверить запись по критериям экзамена.
 
-![Окно «Спросить ИИ» с готовым запросом](screenshots/03_ask_ai.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/03_ask_ai.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/03_ask_ai.png">
+  <img src="screenshots/light/03_ask_ai.png" alt="Окно «Спросить ИИ» с готовым запросом">
+</picture>
 
 ### Вторая часть: разбор и самопроверка по критериям ФИПИ
 
 После верного ответа на задачу с развёрнутым решением ученик видит полный разбор и ставит себе баллы по критериям эксперта.
 
-![Задача ЕГЭ по физике: разбор и критерии оценивания](screenshots/04_solution_criteria.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/04_solution_criteria.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/04_solution_criteria.png">
+  <img src="screenshots/light/04_solution_criteria.png" alt="Задача ЕГЭ по физике: разбор и критерии оценивания">
+</picture>
 
 ### Мини-экзамен и повторение ошибок
 
 Мини-экзамен идёт на время и без подсказок, в нём по задаче из каждой темы. Итог показан по темам. Каждая ошибка попадает в «Повторить ошибки» и возвращается через 1, 3, 7 и 14 дней, пока не перестанет повторяться.
 
-![Итоги мини-экзамена по темам и список ошибок](screenshots/05_exam_result.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/05_exam_result.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/05_exam_result.png">
+  <img src="screenshots/light/05_exam_result.png" alt="Итоги мини-экзамена по темам и список ошибок">
+</picture>
 
 ### Информатика и русский язык
 
 В задачах по информатике программы и данные показаны с отступами. Ответ может состоять из нескольких чисел. В русском языке есть тексты с пронумерованными предложениями и позициями знаков, изложение и сочинение с образцом и критериями.
 
-![Задача ЕГЭ по информатике с данными](screenshots/06_informatics.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/06_informatics.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/06_informatics.png">
+  <img src="screenshots/light/06_informatics.png" alt="Задача ЕГЭ по информатике с данными">
+</picture>
 
-![Задание ОГЭ по русскому языку: грамматическая основа](screenshots/07_russian.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/07_russian.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/07_russian.png">
+  <img src="screenshots/light/07_russian.png" alt="Задание ОГЭ по русскому языку: грамматическая основа">
+</picture>
 
 ### Задачник для учителя
 
 Все задачи предмета на одной странице, ответы и решения спрятаны под спойлером. Страницу можно распечатать.
 
-![Задачник ЕГЭ по математике](screenshots/08_book.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/08_book.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/08_book.png">
+  <img src="screenshots/light/08_book.png" alt="Задачник ЕГЭ по математике">
+</picture>
 
 ### Ещё задания: РешуОГЭ, РешуЕГЭ, КЕГЭ
 
@@ -88,19 +120,31 @@
 
 ### Тёмная и светлая тема
 
-По умолчанию тренажёр тёмный. Кнопка «Светлая тема» в шапке главной, в меню тренажёра и вверху страниц переключает оформление, выбор запоминается в браузере.
+По умолчанию тренажёр тёмный. Кнопка «Светлая тема» в шапке главной, в меню тренажёра и вверху страниц переключает оформление, выбор запоминается в браузере. Картинки в этом README показываются в теме GitHub, а здесь — другая тема:
 
-![Светлая тема](screenshots/11_light.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/light/02_task_hint.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/dark/02_task_hint.png">
+  <img src="screenshots/dark/02_task_hint.png" alt="Другая тема оформления">
+</picture>
 
 ### Методика «6 шагов» и готовые запросы к ИИ
 
 [Методика](https://alex-invntr.github.io/EGE_OGE_Test_Trainer/guide.html) объясняет, как готовиться с ИИ на максимум баллов. Там же готовые запросы для каждого шага и советы по каждому предмету.
 
-![Страница методики](screenshots/09_guide.png)
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/09_guide.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/09_guide.png">
+  <img src="screenshots/light/09_guide.png" alt="Страница методики">
+</picture>
 
 ### На телефоне
 
-<img src="screenshots/10_phone.png" alt="Тренажёр на телефоне" width="300">
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="screenshots/dark/10_phone.png">
+  <source media="(prefers-color-scheme: light)" srcset="screenshots/light/10_phone.png">
+  <img src="screenshots/light/10_phone.png" alt="Тренажёр на телефоне" width="300">
+</picture>
 
 ## Как запустить
 
@@ -171,7 +215,7 @@ node tools/make_screenshots.js
 | [js/trainer.js](js/trainer.js) | движок тренажёра |
 | [banks/](banks/) | банки задач; формат — в [banks/README.md](banks/README.md) |
 | [tools/](tools/) | скрипты проверки ответов, прогона в браузере, снимков экрана и номера версии файлов |
-| [screenshots/](screenshots/) | картинки для README |
+| [screenshots/](screenshots/) | снимки экрана в тёмной (`dark/`) и светлой (`light/`) теме для README и страницы «Как заниматься» |
 
 Чтобы добавить задачу, допишите её в нужный файл `banks/*.js` по [формату](banks/README.md).
 Затем добавьте пересчёт ответа в `tools/check_*.py` и запустите проверки.
