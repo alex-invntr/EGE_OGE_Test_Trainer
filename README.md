@@ -3,8 +3,6 @@
 Тренажёр для подготовки к ОГЭ (9 класс) и ЕГЭ (11 класс) по четырём предметам: **математика, физика, информатика, русский язык**.
 313 задач в формате экзаменов, подсказки, разборы, мини-экзамены, повторение ошибок и ИИ-репетитор, который задаёт наводящие вопросы, а не решает за ученика.
 
-**Автор: [alex-invntr](https://github.com/alex-invntr)**
-
 ### ▶ [Тренажёр](https://alex-invntr.github.io/EGE_OGE_Test_Trainer/) · [Как заниматься](https://alex-invntr.github.io/EGE_OGE_Test_Trainer/howto.html) · [Методика подготовки с ИИ](https://alex-invntr.github.io/EGE_OGE_Test_Trainer/guide.html) · [Скачать ZIP](https://github.com/alex-invntr/EGE_OGE_Test_Trainer/archive/refs/heads/master.zip)
 
 Без установки и регистрации: обычные HTML-страницы, работают в браузере на компьютере и на телефоне, в том числе без интернета. Прогресс хранится в браузере ученика.
