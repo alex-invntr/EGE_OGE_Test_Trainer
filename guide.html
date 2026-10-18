@@ -1,15 +1,16 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Как готовиться с ИИ</title>
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E3A6E'/%3E%3Ctext x='32' y='45' font-size='38' font-family='Arial' font-weight='700' text-anchor='middle' fill='%23FFD43B'%3E%D0%AD%3C/text%3E%3C/svg%3E">
+<script src="js/theme.js"></script>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <div class="guide-page">
-    <a class="back" href="index.html">← К выбору экзамена и предмета</a> &nbsp;·&nbsp; <a class="back" href="howto.html">Как заниматься в тренажёре</a>
+    <div class="page-top"><span><a class="back" href="index.html">← К выбору экзамена и предмета</a> &nbsp;·&nbsp; <a class="back" href="howto.html">Как заниматься в тренажёре</a></span><button class="theme-btn" data-theme-toggle>☀ Светлая тема</button></div>
     <h1>Как готовиться к ЕГЭ и ОГЭ с ИИ — на максимум</h1>
     <p class="lead">Цель — не «сдать», а взять максимум: довести каждую тему до нуля ошибок, а оформление развёрнутых ответов — до автоматизма.
         ИИ здесь — тренер, который задаёт вопросы и проверяет, а не решебник. На экзамене его не будет, поэтому всё, что он объяснил, должно стать твоим.</p>
@@ -42,6 +43,8 @@
         <div class="prompt">Не давай готового решения и не называй ответ! Задай мне ОДИН наводящий вопрос, чтобы я сам нашёл ошибку. Когда отвечу — задай следующий. Когда я получу ответ, проверь мою запись по критериям экзамена и скажи, сколько баллов я бы получил.</div>
         <p>Если задач по теме мало — попроси новые:</p>
         <div class="prompt">Составь 5 задач уровня задания №… [ОГЭ/ЕГЭ] по [предмет] на тему «…». Ответы спрячь. Проверяй мои решения по одному и не показывай ответ, пока я не попробую дважды.</div>
+        <p>Главный источник новых задач — каталоги РешуОГЭ и РешуЕГЭ: там задания открытого банка ФИПИ по номерам КИМ, с ответами и решениями. По информатике ЕГЭ — ещё КЕГЭ с заданиями и вариантами в компьютерном формате. Порядок тот же: сначала сам, решение смотри только после ответа.</p>
+        <div class="sources" id="sources"></div>
     </div></div>
 
     <div class="step"><div class="n">4</div><div>

@@ -1,11 +1,12 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="ru" data-theme="dark">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Тренажёр ЕГЭ и ОГЭ</title>
 <meta name="description" content="Тренажёр ЕГЭ и ОГЭ: математика, физика, информатика, русский язык. Работает в браузере без интернета.">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230E3A6E'/%3E%3Ctext x='32' y='45' font-size='38' font-family='Arial' font-weight='700' text-anchor='middle' fill='%23FFD43B'%3E%D0%AD%3C/text%3E%3C/svg%3E">
+<script src="js/theme.js"></script>
 <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -16,6 +17,7 @@
             <h1>Тренажёр ЕГЭ и ОГЭ</h1>
             <p>Математика · Физика · Информатика · Русский язык — <span id="total-tasks">…</span> с подсказками, разбором и ИИ-репетитором</p>
         </div>
+        <button class="theme-btn" data-theme-toggle>☀ Светлая тема</button>
         <a class="hero-btn" href="howto.html">Как заниматься</a>
     </header>
 
@@ -46,6 +48,12 @@
             <p class="lead">ИИ — тренер, который задаёт вопросы и проверяет, а не решебник. Методика из шести шагов и готовые запросы для всех предметов.</p>
             <a class="btn" href="guide.html">Открыть методику</a>
         </div>
+    </div>
+
+    <div class="panel" style="margin-top:14px">
+        <h3>Ещё задания: РешуОГЭ, РешуЕГЭ, КЕГЭ</h3>
+        <p class="lead" style="margin:0">Когда задачи тренажёра решены без ошибок, бери новые из каталогов РешуОГЭ и РешуЕГЭ: там задания открытого банка ФИПИ по номерам КИМ, с ответами и решениями. По информатике ЕГЭ — ещё КЕГЭ: задания и варианты в компьютерном формате.</p>
+        <div class="sources" id="sources"></div>
     </div>
 
     <p class="foot">Работает без интернета: откройте <b>index.html</b> двойным щелчком. Прогресс хранится только в этом браузере на этом компьютере.

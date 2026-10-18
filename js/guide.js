@@ -48,3 +48,4 @@ function addCopyButtons() {
 
 renderSpecTable();
 addCopyButtons();
+renderSourcesGrid("sources");

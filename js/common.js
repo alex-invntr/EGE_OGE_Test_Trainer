@@ -119,3 +119,48 @@ function plural(n, forms) {
     }
     return forms[2];
 }
+
+
+
+// Внешние базы заданий: каталоги РешуОГЭ / РешуЕГЭ (sdamgia.ru) и КЕГЭ (kompege.ru) — задания открытого банка ФИПИ с ответами и решениями
+const SDAMGIA_CATALOG = "prob_catalog";
+const SOURCES = {
+    oge_math: [{ name: "РешуОГЭ", url: "https://math-oge.sdamgia.ru/" + SDAMGIA_CATALOG }],
+    oge_physics: [{ name: "РешуОГЭ", url: "https://phys-oge.sdamgia.ru/" + SDAMGIA_CATALOG }],
+    oge_informatics: [{ name: "РешуОГЭ", url: "https://inf-oge.sdamgia.ru/" + SDAMGIA_CATALOG }],
+    oge_russian: [{ name: "РешуОГЭ", url: "https://rus-oge.sdamgia.ru/" + SDAMGIA_CATALOG }],
+    ege_math: [{ name: "РешуЕГЭ", url: "https://math-ege.sdamgia.ru/" + SDAMGIA_CATALOG }],
+    ege_physics: [{ name: "РешуЕГЭ", url: "https://phys-ege.sdamgia.ru/" + SDAMGIA_CATALOG }],
+    ege_informatics: [{ name: "РешуЕГЭ", url: "https://inf-ege.sdamgia.ru/" + SDAMGIA_CATALOG }, { name: "КЕГЭ", url: "https://kompege.ru/" }],
+    ege_russian: [{ name: "РешуЕГЭ", url: "https://rus-ege.sdamgia.ru/" + SDAMGIA_CATALOG }],
+};
+
+
+
+// Ссылки на внешние базы заданий одного банка
+function sourceLinks(bankId) {
+    return (SOURCES[bankId] || []).map((s) => `<a href="${s.url}" target="_blank" rel="noopener">${esc(s.name)} ↗</a>`).join("");
+}
+
+
+
+// Номер задания КИМ из подписи format: «задание 9 ЕГЭ · …» → «9», «задания 6–11 ОГЭ» → «6–11»
+function kimNumber(format) {
+    const m = String(format).match(/задани[еяй]\s+(\d+(?:\s*[–-]\s*\d+)?)/);
+    return m ? m[1].replace(/\s+/g, "") : "";
+}
+
+
+
+// Сетка ссылок на внешние базы всех предметов (главная, методика)
+function renderSourcesGrid(elId) {
+    const box = document.getElementById(elId);
+    if (!box) {
+        return;
+    }
+    box.innerHTML = BANK_IDS.flatMap((id) => {
+        const [examKey, subjKey] = id.split("_");
+        return (SOURCES[id] || []).map((s) => `<a href="${s.url}" target="_blank" rel="noopener" style="--c:${SUBJECTS[subjKey].color}">` +
+            `${esc(s.name)} ↗<small>${EXAMS[examKey].name} · ${SUBJECTS[subjKey].name}</small></a>`);
+    }).join("");
+}

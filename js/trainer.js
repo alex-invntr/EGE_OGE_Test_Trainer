@@ -134,6 +134,7 @@ function showHome() {
                 <button class="big" id="h-prompt">4 · Разобрать тему с ИИ<small>готовый запрос: объяснение на примере и 5 вопросов</small></button>
                 <button class="big" id="h-book">5 · Задачник<small>все ${BANK.tasks.length} ${plural(BANK.tasks.length, ["задача", "задачи", "задач"])} с ответами и решениями — для учителя и для печати</small></button>
                 <a class="big" href="guide.html" style="text-decoration:none;color:inherit">6 · Как готовиться с ИИ<small>методика «6 шагов» и готовые запросы</small></a>
+                <div class="big">7 · Ещё задания<small>каталог по номерам заданий ${esc(BANK.examName)}: задания открытого банка ФИПИ с ответами и решениями</small><span class="src-links">${sourceLinks(BANK_ID)}</span></div>
             </div>
             <p class="note">Правило: сначала сам → подсказка → ИИ. ИИ не выдаёт ответ, а задаёт наводящий вопрос. Решение смотри только после своей попытки.</p>
         </div>`;
@@ -254,6 +255,7 @@ function showTask() {
                 <button id="b-next" class="hidden">Дальше →</button>
                 ${exam ? "" : `<button id="b-home" class="ghost">К темам</button>`}
             </div>
+            ${exam ? "" : moreTasksLine(t)}
             <div id="feedback" class="feedback hidden"></div>
             <div id="hints" class="hints"></div>
             <div id="solution" class="solution hidden"></div>
@@ -284,6 +286,18 @@ function showTask() {
             };
         }
     }
+}
+
+
+
+// Строка под задачей: такие же задания во внешних базах с номером задания КИМ
+function moreTasksLine(t) {
+    const links = sourceLinks(BANK_ID);
+    if (!links) {
+        return "";
+    }
+    const num = kimNumber(t.format);
+    return `<div class="more-tasks">Ещё такие задания: ${links}${num ? ` в каталоге — задание № ${esc(num)}` : ""}</div>`;
 }
 
 
@@ -908,6 +922,7 @@ function setupPage(bank) {
     el("btn-book").onclick = showBook;
     el("btn-home").onclick = showHome;
     el("btn-reset").onclick = resetAll;
+    el("side-sources").innerHTML = "Ещё задания: " + sourceLinks(BANK_ID);
     el("m-close").onclick = closeModal;
     el("m-copy").onclick = copyPrompt;
     el("m-open").href = ASSISTANT_URL;

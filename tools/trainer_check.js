@@ -199,6 +199,12 @@ async function checkScenarios(page, id) {
         // ширина: содержимое не вылезает за карточку
         const card = document.querySelector("#screen .card");
         out.overflow = card.scrollWidth > card.clientWidth + 2;
+        // ссылки на внешнюю базу: на главной тренажёра, в меню и под задачей
+        showHome();
+        out.srcHome = document.querySelectorAll(".src-links a").length;
+        out.srcSide = document.querySelectorAll("#side-sources a").length;
+        startSession("train", [t.id]);
+        out.srcTask = document.querySelectorAll(".more-tasks a").length;
         // сброс прогресса
         window.confirm = () => true;
         document.getElementById("btn-reset").click();
@@ -212,6 +218,7 @@ async function checkScenarios(page, id) {
     check(r.bookTasks === r.total && r.bookFigures === r.figures, `${id}: задачник — ${r.bookTasks} из ${r.total} задач, рисунков ${r.bookFigures} из ${r.figures}`);
     check(!r.overflow, `${id}: задачник не шире карточки`);
     check(r.resetOk, `${id}: сброс прогресса`);
+    check(r.srcHome > 0 && r.srcHome === r.srcSide && r.srcHome === r.srcTask, `${id}: ссылки на внешние базы (${r.srcHome}/${r.srcSide}/${r.srcTask})`);
 }
 
 
@@ -275,6 +282,19 @@ async function main() {
     const broken = await page.evaluate(() => Array.from(document.images).filter((im) => !im.naturalWidth).map((im) => im.getAttribute("src")));
     check(howto.imgs >= 9 && broken.length === 0, `«Как заниматься»: картинок ${howto.imgs}, не загрузились: ${broken.join(", ")}`);
     check(ids.every((id) => howto.links.includes(id)), `«Как заниматься»: ссылки на все банки (${howto.links.length})`);
+    // тема: тёмная по умолчанию, переключатель запоминает светлую
+    await page.goto(ROOT_URL + "index.html");
+    const theme0 = await page.evaluate(() => document.documentElement.getAttribute("data-theme"));
+    await page.click("[data-theme-toggle]");
+    await page.reload();
+    const theme1 = await page.evaluate(() => document.documentElement.getAttribute("data-theme"));
+    await page.click("[data-theme-toggle]");
+    const theme2 = await page.evaluate(() => document.documentElement.getAttribute("data-theme"));
+    check(theme0 === "dark" && theme1 === "light" && theme2 === "dark", `тема: ${theme0} → ${theme1} (после перезагрузки) → ${theme2}`);
+    // внешние базы заданий: РешуОГЭ, РешуЕГЭ, КЕГЭ
+    const src = await page.evaluate(() => Array.from(document.querySelectorAll("#sources a")).map((a) => a.href));
+    check(src.length === ids.length + 1 && src.filter((u) => u.includes("sdamgia.ru/prob_catalog")).length === ids.length && src.some((u) => u.includes("kompege.ru")),
+        `главная: ссылок на внешние базы ${src.length}`);
     await page.goto(ROOT_URL + "trainer.html?b=nope");
     check(await page.evaluate(() => document.body.textContent.includes("Не выбран экзамен")), "неизвестный банк — понятное сообщение");
 

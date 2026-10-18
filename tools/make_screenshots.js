@@ -1,5 +1,6 @@
 // Снимки экранов для README: страницы открываются с диска в Chrome или Edge в фоне, картинки — в screenshots/.
 // Для правдоподобной картинки в отдельном профиле браузера заранее записывается немного прогресса.
+// Все снимки — в тёмной теме (она по умолчанию), последний — в светлой.
 // Запуск: node tools/make_screenshots.js [путь к браузеру]; puppeteer-core — в tools/node_modules или в NODE_PATH.
 
 const path = require("path");
@@ -155,6 +156,17 @@ async function main() {
     await openTrainer(page, "oge_physics");
     await page.evaluate(() => startSession("train", ["E1"]));
     await shot(page, "10_phone.png", null);
+
+    // светлая тема (по умолчанию тёмная): то же окно задачи
+    await page.setViewport(DESKTOP);
+    await openTrainer(page, "oge_math");
+    await page.evaluate(() => {
+        toggleTheme();
+        startSession("train", ["T2"]);
+        document.getElementById("inp").value = "39";
+        document.getElementById("b-check").click();
+    });
+    await shot(page, "11_light.png", null);
 
     await browser.close();
     fs.rmSync(profile, { recursive: true, force: true });
