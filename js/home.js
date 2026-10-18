@@ -41,5 +41,48 @@ function render() {
 
 
 
+// Статистика мелким шрифтом: состав банков считается здесь, итоги проверок — из js/stats.js (tools/make_stats.py)
+function renderStats() {
+    const box = el("stats-line");
+    const banks = BANK_IDS.map((id) => window.BANKS && window.BANKS[id]).filter(Boolean);
+    if (!box || !banks.length) {
+        return;
+    }
+    const tasks = banks.flatMap((b) => b.tasks);
+    const count = (pred) => tasks.filter(pred).length;
+    const byExam = (e) => banks.filter((b) => b.exam === e).reduce((n, b) => n + b.tasks.length, 0);
+    const kinds = [
+        ["число", (t) => t.kind === "number"],
+        ["несколько чисел", (t) => t.kind === "numbers"],
+        ["выбор", (t) => t.kind === "choice" || t.kind === "multi"],
+        ["соответствие", (t) => t.kind === "match"],
+        ["цифры", (t) => t.kind === "digits"],
+        ["слово", (t) => t.kind === "word"],
+        ["свободный ответ", (t) => t.kind === "text"],
+    ].map(([name, pred]) => `${name} ${count(pred)}`).join(", ");
+    const parts = [
+        `Статистика: ${tasks.length} ${plural(tasks.length, ["задача", "задачи", "задач"])} (ОГЭ ${byExam("oge")}, ЕГЭ ${byExam("ege")})`,
+        `${banks.length} ${plural(banks.length, ["банк", "банка", "банков"])}`,
+        `${banks.reduce((n, b) => n + Object.keys(b.topics).length, 0)} тем`,
+        `вторая часть — ${count((t) => t.part2)}`,
+        `с рисунками — ${count((t) => t.figure)}`,
+        `с программами и данными — ${count((t) => t.code)}`,
+        `подсказок — ${tasks.reduce((n, t) => n + t.hints.length, 0)}`,
+        `типы ответов: ${kinds}`,
+    ];
+    if (typeof CHECK_STATS !== "undefined") {
+        const s = CHECK_STATS;
+        parts.push(`ответы пересчитаны кодом — ${s.recomputed}`,
+            `слепое решение по русскому языку — совпало ${s.blind} из ${s.blindTotal}`,
+            `проверок в браузере — ${s.browserChecks}`,
+            `проверено на совпадения с открытыми источниками — ${s.origChecked}, заменено своими — ${s.replaced}`,
+            `данные на ${s.date}`);
+    }
+    box.textContent = parts.join(" · ") + ".";
+}
+
+
+
 render();
 renderSourcesGrid("sources");
+renderStats();

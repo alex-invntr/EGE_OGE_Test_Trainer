@@ -266,6 +266,8 @@ async function main() {
     await page.goto(ROOT_URL + "index.html");
     const cards = await page.evaluate(() => ({ ok: document.querySelectorAll("a.subj").length, missing: document.querySelectorAll(".subj.missing").length }));
     check(cards.ok === ids.length, `главная: карточек банков ${cards.ok}, файлов банков ${ids.length}`);
+    const statsLine = await page.evaluate(() => (document.getElementById("stats-line") || {}).textContent || "");
+    check(statsLine.startsWith("Статистика:") && statsLine.includes("проверок в браузере"), "главная: строка статистики с итогами проверок");
     await page.goto(ROOT_URL + "guide.html");
     const specRows = await page.evaluate(() => document.querySelectorAll("#spec-table tr").length - 1);
     check(specRows === ids.length, `методика: строк в таблице экзаменов ${specRows}`);
