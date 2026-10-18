@@ -16,7 +16,7 @@ const BANK_IDS = Object.keys(EXAMS).flatMap((e) => Object.keys(SUBJECTS).map((s)
 const STORAGE_PREFIX = "ege_oge_trainer_v1:";
 const REVIEW_DAYS = [1, 3, 7, 14];                          // интервалы повторения ошибок, дни
 const DAY_MS = 86400000;
-const ASSET_VERSION = "202610181844";                                // версия файлов для кэша браузера; ставит tools/set_version.py
+const ASSET_VERSION = "202610181845";                                // версия файлов для кэша браузера; ставит tools/set_version.py
 
 
 

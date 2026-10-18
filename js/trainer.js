@@ -890,7 +890,7 @@ function resetAll() {
 
 // ---------- Запуск ----------
 function showLoadError(msg) {
-    document.body.innerHTML = `<div class="card error-box"><h2>Не удалось открыть тренажёр</h2><p class="lead">${msg}</p><p><a href="index.html">← На главную</a></p></div>`;
+    document.body.innerHTML = `<div class="card error-box"><h2>Тренажёр не загрузился</h2><p class="lead">${msg}</p><p><a href="index.html">← На главную</a></p></div>`;
 }
 
 
@@ -930,8 +930,7 @@ function setupPage(bank) {
     el("side-sources").innerHTML = "Ещё задания: " + sourceLinks(BANK_ID);
     el("m-close").onclick = closeModal;
     el("m-copy").onclick = copyPrompt;
-    el("m-ai").innerHTML = `<span class="m-label">Открыть:</span>` +
-        ASSISTANTS.map((a) => `<a href="${a.url}" target="_blank" rel="noopener">${esc(a.name)} ↗</a>`).join("");
+    el("m-ai").innerHTML = ASSISTANTS.map((a) => `<a href="${a.url}" target="_blank" rel="noopener">${esc(a.name)} ↗</a>`).join("");
     el("m-ai").querySelectorAll("a").forEach((a) => (a.onclick = copyPrompt));
     el("modal").onclick = (e) => {
         if (e.target === el("modal")) {
@@ -953,7 +952,7 @@ function setupPage(bank) {
 function init() {
     const id = new URLSearchParams(location.search).get("b") || "";
     if (!BANK_IDS.includes(id)) {
-        showLoadError("Не выбран экзамен и предмет. Открой тренажёр с главной страницы.");
+        showLoadError("Не выбран экзамен и предмет. Выбери их на главной странице.");
         return;
     }
     BANK_ID = id;
