@@ -255,9 +255,9 @@ function showTask() {
             <div class="answer" id="answer">${renderInput(t)}</div>
             <div class="actions">
                 <button class="primary" id="b-check">${checkLabel}</button>
+                <button id="b-next" class="next hidden">Дальше →</button>
                 ${exam ? "" : `<button id="b-hint">Подсказка <span id="hint-n">1</span> из ${MAX_HINTS}</button>`}
                 ${exam ? "" : `<button id="b-ai">Спросить ИИ</button>`}
-                <button id="b-next" class="next hidden">Дальше →</button>
                 ${exam ? "" : `<button id="b-home" class="ghost">К темам</button>`}
             </div>
             ${exam ? "" : moreTasksLine(t)}
