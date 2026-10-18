@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тренажёр ЕГЭ и ОГЭ</title>
+<meta name="description" content="Тренажёр ЕГЭ и ОГЭ: математика, физика, информатика, русский язык. Работает в браузере без интернета.">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<div class="home-page">
+    <header class="hero">
+        <div class="logo">Э</div>
+        <div>
+            <h1>Тренажёр ЕГЭ и ОГЭ</h1>
+            <p>Математика · Физика · Информатика · Русский язык — <span id="total-tasks">…</span> с подсказками, разбором и ИИ-репетитором</p>
+        </div>
+    </header>
+
+    <section class="exam-block">
+        <h2>ОГЭ <small>9 класс</small></h2>
+        <div class="subjects" id="subjects-oge"></div>
+    </section>
+
+    <section class="exam-block">
+        <h2>ЕГЭ <small>11 класс</small></h2>
+        <div class="subjects" id="subjects-ege"></div>
+    </section>
+
+    <div class="info-grid">
+        <div class="panel">
+            <h3>Как устроен тренажёр</h3>
+            <ul>
+                <li><b>Тренировка по теме</b> — задачи в формате экзамена, три подсказки лесенкой: идея → план → почти решение.</li>
+                <li><b>Мини-экзамен</b> — задачи из всех тем на время, без подсказок; итог по темам и список ошибок.</li>
+                <li><b>Повторение ошибок</b> — ошибка возвращается через 1, 3, 7 и 14 дней, пока не перестанет повторяться.</li>
+                <li><b>«Спросить ИИ»</b> — готовый запрос с условием и твоим ответом: ИИ задаёт наводящие вопросы, а не решает за тебя.</li>
+                <li><b>Самопроверка части 2</b> — критерии ФИПИ: сам ставишь себе баллы, как эксперт.</li>
+                <li><b>Задачник</b> — все задачи с ответами и решениями, можно распечатать.</li>
+            </ul>
+        </div>
+        <div class="panel">
+            <h3>Готовиться с ИИ — правильно</h3>
+            <p class="lead">ИИ — тренер, который задаёт вопросы и проверяет, а не решебник. Методика из шести шагов и готовые запросы для всех предметов.</p>
+            <a class="btn" href="guide.html">Открыть методику</a>
+        </div>
+    </div>
+
+    <p class="foot">Работает без интернета: откройте <b>index.html</b> двойным щелчком. Прогресс хранится только в этом браузере на этом компьютере.
+        Формат экзаменов — по спецификациям ФИПИ; задачи — оригинальные, в стиле экзамена, каждый ответ проверен независимым скриптом.
+        Официальные демоверсии и открытый банк заданий — на сайте <a href="https://fipi.ru" target="_blank" rel="noopener">fipi.ru</a>.</p>
+</div>
+<script src="js/common.js"></script>
+<script src="banks/oge_math.js"></script>
+<script src="banks/oge_physics.js"></script>
+<script src="banks/oge_informatics.js"></script>
+<script src="banks/oge_russian.js"></script>
+<script src="banks/ege_math.js"></script>
+<script src="banks/ege_physics.js"></script>
+<script src="banks/ege_informatics.js"></script>
+<script src="banks/ege_russian.js"></script>
+<script src="js/home.js"></script>
+</body>
+</html>

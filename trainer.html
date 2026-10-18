@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Тренажёр ЕГЭ и ОГЭ</title>
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body class="trainer-page">
+<aside id="side">
+    <a class="back" href="index.html">← Все экзамены и предметы</a>
+    <div class="brand">
+        <div class="logo" id="logo">·</div>
+        <div><h1 id="brand-title">Тренажёр</h1><p id="brand-sub">загрузка…</p></div>
+    </div>
+    <nav class="modes">
+        <button id="btn-home">Главная тренажёра</button>
+        <button id="btn-train">Тренировка по теме</button>
+        <button id="btn-exam">Мини-экзамен</button>
+        <button id="btn-review">Повторить ошибки <span class="count zero" id="due-count">0</span></button>
+        <button id="btn-book">Задачник с ответами</button>
+    </nav>
+    <section class="side-map"><h2 class="side-h">Карта тем</h2><div id="topics"></div></section>
+    <section class="side-stats"><h2 class="side-h">Мой прогресс</h2>
+        <div class="stats"><div>Решено<b id="st-solved">0</b></div><div>Точность<b id="st-acc">—</b></div><div>Серия<b id="st-streak">0</b></div></div>
+    </section>
+    <details class="howto">
+        <summary>Как заниматься: 6 шагов</summary>
+        <ol>
+            <li>Диагностика: вариант ФИПИ без ИИ, потом разбор ошибок с ИИ.</li>
+            <li>Разбор темы: «объясни на примере и задай 5 вопросов».</li>
+            <li>Тренировка здесь: сначала сам → подсказка → «Спросить ИИ».</li>
+            <li>Проверка оформления по критериям ФИПИ — и проверка самого ИИ.</li>
+            <li>Журнал ошибок: тренажёр вернёт задачу через 1, 3, 7, 14 дней.</li>
+            <li>Раз в неделю — экзамен на время, без ИИ.</li>
+        </ol>
+    </details>
+    <div class="side-links">
+        <a href="guide.html">Методика и готовые запросы к ИИ</a>
+        <button id="btn-reset">Сбросить прогресс по предмету</button>
+    </div>
+</aside>
+<main id="main"><div id="screen"></div></main>
+<div id="modal" class="modal hidden">
+    <div class="box">
+        <h3 id="m-title">Спроси ИИ правильно</h3>
+        <p class="sub" id="m-sub"></p>
+        <textarea id="m-text" spellcheck="false"></textarea>
+        <div class="m-actions">
+            <button class="primary" id="m-copy">Скопировать</button>
+            <a id="m-open" href="#" target="_blank" rel="noopener">Открыть Claude</a>
+            <button id="m-close">Закрыть</button>
+        </div>
+        <p class="m-note">Скопируй запрос и вставь в Claude или другой ИИ-помощник. Ответ ИИ тоже проверяй: по учебнику и по материалам ФИПИ.</p>
+    </div>
+</div>
+<script src="js/common.js"></script>
+<script src="js/trainer.js"></script>
+</body>
+</html>

@@ -1,0 +1,9 @@
+# Служебное
+node_modules/
+__pycache__/
+*.pyc
+.~lock.*#
+Thumbs.db
+.DS_Store
+tools/package.json
+tools/package-lock.json
