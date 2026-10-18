@@ -260,6 +260,21 @@ async function main() {
     await page.goto(ROOT_URL + "guide.html");
     const specRows = await page.evaluate(() => document.querySelectorAll("#spec-table tr").length - 1);
     check(specRows === ids.length, `методика: строк в таблице экзаменов ${specRows}`);
+    await page.goto(ROOT_URL + "index.html");
+    check(await page.evaluate(() => !!document.querySelector('a.hero-btn[href="howto.html"]')), "главная: кнопка «Как заниматься»");
+    await page.goto(ROOT_URL + "howto.html", { waitUntil: "load" });
+    const howto = await page.evaluate(() => {
+        const imgs = Array.from(document.images);
+        imgs.forEach((im) => (im.loading = "eager"));
+        return {
+            imgs: imgs.length,
+            links: Array.from(document.querySelectorAll('a[href^="trainer.html?b="]')).map((a) => a.getAttribute("href").split("=")[1]),
+        };
+    });
+    await page.waitForFunction(() => Array.from(document.images).every((im) => im.complete));
+    const broken = await page.evaluate(() => Array.from(document.images).filter((im) => !im.naturalWidth).map((im) => im.getAttribute("src")));
+    check(howto.imgs >= 9 && broken.length === 0, `«Как заниматься»: картинок ${howto.imgs}, не загрузились: ${broken.join(", ")}`);
+    check(ids.every((id) => howto.links.includes(id)), `«Как заниматься»: ссылки на все банки (${howto.links.length})`);
     await page.goto(ROOT_URL + "trainer.html?b=nope");
     check(await page.evaluate(() => document.body.textContent.includes("Не выбран экзамен")), "неизвестный банк — понятное сообщение");
 
