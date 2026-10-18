@@ -3,13 +3,15 @@
 // Плюс сценарии: главная, подсказки, экзамен, повторение ошибок, задачник, запрос к ИИ, сброс прогресса.
 // Запуск: node tools/trainer_check.js [oge_math ege_russian ...] [путь к браузеру]
 // Без списка банков проверяются все; puppeteer-core — в tools/node_modules или в NODE_PATH.
+// Опубликованный сайт: TRAINER_URL=https://alex-invntr.github.io/EGE_OGE_Test_Trainer/ node tools/trainer_check.js
 
 const path = require("path");
 const fs = require("fs");
 const puppeteer = require("puppeteer-core");
 
 const ROOT = path.resolve(__dirname, "..");
-const ROOT_URL = "file:///" + ROOT.replace(/\\/g, "/") + "/";
+// Адрес сайта: по умолчанию папка на диске; TRAINER_URL=https://… — опубликованный сайт
+const ROOT_URL = process.env.TRAINER_URL || "file:///" + ROOT.replace(/\\/g, "/") + "/";
 const BROWSERS = [
     "C:/Program Files/Google/Chrome/Application/chrome.exe",
     "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe",

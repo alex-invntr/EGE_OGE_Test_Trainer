@@ -130,6 +130,8 @@ npm install --prefix tools puppeteer-core@23.11.1
 node tools/trainer_check.js
 ```
 
+Тот же прогон для опубликованного сайта: задайте переменную окружения `TRAINER_URL=https://alex-invntr.github.io/EGE_OGE_Test_Trainer/` и запустите `node tools/trainer_check.js`.
+
 Пересобрать картинки для этого README:
 
 ```bash
