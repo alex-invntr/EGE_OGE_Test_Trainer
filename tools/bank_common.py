@@ -18,6 +18,7 @@ MIN_OPTIONS = 3
 MAX_OPTIONS = 9
 MAX_MATCH_RIGHT = 9
 MAX_TOL = 0.1
+INT_EPS = 1e-6                 # насколько пересчитанное число может отличаться от целого из-за округлений float
 BANK_FIELDS = ["exam", "subject", "examName", "subjectName", "subjectDative", "grade", "letter", "spec", "mini", "topics", "criteria", "tasks"]
 TASK_FIELDS = ["id", "topic", "kind", "level", "format", "text", "code", "figure", "options", "answer", "unit", "tol", "hints", "solution", "part2"]
 
@@ -165,9 +166,13 @@ def parse_numbers(s):
 
 
 
-# Число в человеческом виде для отчёта
+# Число в человеческом виде для отчёта; целые — полностью, чтобы было видно расхождение в длинных числах
 def fmt(v):
-    return f"{v:g}" if isinstance(v, (int, float)) and not isinstance(v, bool) else repr(v)
+    if isinstance(v, bool) or not isinstance(v, (int, float)):
+        return repr(v)
+    if float(v).is_integer():
+        return str(int(v))
+    return f"{v:g}"
 
 
 
@@ -185,7 +190,13 @@ def compare(bank, etalon, rel_tol=1e-6):
         if exp is None:
             continue
         if t["kind"] == "number":
-            ok = isinstance(exp, (int, float)) and abs(got - exp) <= max(rel_tol, t["tol"]) * max(abs(exp), 1e-9) + 1e-9
+            if not isinstance(exp, (int, float)):
+                ok = False
+            elif t["tol"] == 0 and float(got).is_integer():
+                # целый ответ без допуска — точное совпадение, иначе в длинных числах ошибка тонет в относительной точности
+                ok = abs(exp - round(exp)) < INT_EPS and int(got) == round(exp)
+            else:
+                ok = abs(got - exp) <= max(rel_tol, t["tol"]) * max(abs(exp), 1e-9) + 1e-9
         elif t["kind"] in ("digits", "multi"):
             ok = sorted(str(got)) == sorted(str(exp))
         elif t["kind"] == "numbers":

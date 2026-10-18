@@ -48,7 +48,7 @@ M1_ORIGIN = (50, 180)       # график vₓ(t): t = 0, v = 0
 M1_PX_PER_S = 40
 M1_PX_PER_MS = 15
 T3_ORIGIN = (50, 190)       # график p(V): V = 0, p = 0
-T3_PX_PER_L = 60
+T3_PX_PER_L = 50
 T3_PX_PER_KPA = 0.45
 V2_GRAPHS = {"data-a": (30, 170, 110), "data-b": (240, 380, 75)}   # x при t = 0, x при t = T, y оси времени
 V2_SAMPLES = 8              # сверка графиков в точках t = kT/8
@@ -220,7 +220,7 @@ def m1_path(task):
 
 # M2: сила упругости из второго закона Ньютона, удлинение — по закону Гука, в сантиметрах
 def m2_stretch_cm():
-    m, k, a, mu = 2, 400, 1, 0.3
+    m, k, a, mu = 1.5, 250, 2, 0.2
     f_elastic = m * a + mu * m * G
     return f_elastic / k * 100
 
@@ -228,7 +228,7 @@ def m2_stretch_cm():
 
 # M3: потеря энергии при абсолютно неупругом ударе через приведённую массу (другим путём, чем в разборе)
 def m3_heat():
-    m1, v1, m2 = 3, 4, 1
+    m1, v1, m2 = 0.8, 4, 1.2
     reduced = m1 * m2 / (m1 + m2)
     return reduced * v1 ** 2 / 2
 
@@ -236,7 +236,7 @@ def m3_heat():
 
 # M4: моменты относительно опоры A дают N_B, затем N_A = mg − N_B (в разборе — моменты относительно B)
 def m4_support_a():
-    m, length, from_right = 30, 6, 2
+    m, length, from_right = 40, 5, 1
     x_b = length - from_right
     n_b = m * G * (length / 2) / x_b
     return m * G - n_b
@@ -246,7 +246,7 @@ def m4_support_a():
 # M5: по таблице x(t) — равноускоренное движение, истинность каждого утверждения
 def m5_statements(task):
     ts, xs = parse_table(task["code"])
-    mass = 0.5
+    mass = 0.4
     accels = {2 * x / t ** 2 for t, x in zip(ts, xs) if t > 0}
     assert len(accels) == 1, "движение по таблице не равноускоренное без начальной скорости"
     a = accels.pop()
@@ -254,10 +254,10 @@ def m5_statements(task):
     x_at = dict(zip(ts, xs))
     return true_numbers([
         len(set(steps)) == 1,
-        math.isclose(a, 4),
-        math.isclose(a * 3, 12),
-        math.isclose(mass * a, 4),
-        math.isclose(x_at[2] - x_at[1], 8),
+        math.isclose(a, 6),
+        math.isclose(a * 2, 6),
+        math.isclose(mass * a, 2.4),
+        math.isclose(x_at[3] - x_at[2], 27),
     ])
 
 
@@ -274,7 +274,7 @@ def m6_orbit():
 
 # M7: сумма сил векторно на плоскости (x — по горизонтали, y — вверх), ускорение — проекция на направление движения
 def m7_incline():
-    m, height, length, force, mu = 2, 3, 5, 24, 0.25
+    m, height, length, force, mu = 2.6, 2.5, 6.5, 29, 0.25
     sin_a = height / length
     cos_a = math.sqrt(1 - sin_a ** 2)
     up = (cos_a, sin_a, 0)                       # вдоль плоскости вверх
@@ -291,7 +291,7 @@ def m7_incline():
 
 # M8: кинематика бруска и тележки с силой трения (в разборе — законы сохранения)
 def m8_relative_shift():
-    m, big_m, height, mu = 0.2, 0.6, 0.8, 0.5
+    m, big_m, height, mu = 0.3, 0.9, 0.45, 0.25
     v0 = math.sqrt(2 * G * height)
     a_block = mu * G                             # торможение бруска
     a_cart = mu * m * G / big_m                  # разгон тележки
@@ -304,13 +304,13 @@ def m8_relative_shift():
 
 # T1: средняя кинетическая энергия поступательного движения молекулы, в 10⁻²¹ Дж
 def t1_energy():
-    return 1.5 * K_B * (27 + ZERO_CELSIUS) / 1e-21
+    return 1.5 * K_B * (87 + ZERO_CELSIUS) / 1e-21
 
 
 
 # T2: цикл Карно — Q₂/Q₁ = T₂/T₁, работа A = Q₁ − Q₂, кДж
 def t2_carnot():
-    t_hot, t_cold, q_hot = 527 + ZERO_CELSIUS, 27 + ZERO_CELSIUS, 4
+    t_hot, t_cold, q_hot = 327 + ZERO_CELSIUS, 57 + ZERO_CELSIUS, 6
     q_cold = q_hot * t_cold / t_hot
     return q_hot - q_cold
 
@@ -331,9 +331,9 @@ def t3_statements(task):
     q41 = internal(0) - internal(3) + work(3, 0)
     return true_numbers([
         work(0, 1) > 0,
-        math.isclose(cycle, 400),
+        math.isclose(cycle, 300),
         internal(2) < internal(1),
-        math.isclose(st[2][0] * st[2][1] / (st[0][0] * st[0][1]), 9),
+        math.isclose(st[2][0] * st[2][1] / (st[0][0] * st[0][1]), 8),
         q41 > 0,
     ])
 
@@ -368,7 +368,7 @@ def t5_match():
 
 # T6: давление из равновесия поршня, температуры из уравнения состояния, Q = ΔU + A
 def t6_heat():
-    m, area, p0, rise = 10, 50e-4, 1e5, 0.08
+    m, area, p0, rise = 8, 40e-4, 1e5, 0.15
     p = p0 + m * G / area
     nu, h_start = 1, 0.2                         # произвольные: ответ от них не зависит
     v1, v2 = area * h_start, area * (h_start + rise)
@@ -379,8 +379,8 @@ def t6_heat():
 
 # T7: смешение гелия — сохранение внутренней энергии, температура смеси, затем давление, кПа
 def t7_pressure():
-    v1, p1, t1 = 2e-3, 300e3, 300
-    v2, p2, t2 = 3e-3, 100e3, 400
+    v1, p1, t1 = 1.5e-3, 240e3, 280
+    v2, p2, t2 = 4.5e-3, 80e3, 350
     nu1, nu2 = p1 * v1 / (R_GAS * t1), p2 * v2 / (R_GAS * t2)
     t_mix = (nu1 * t1 + nu2 * t2) / (nu1 + nu2)
     return (nu1 + nu2) * R_GAS * t_mix / (v1 + v2) / 1e3
@@ -396,7 +396,7 @@ def e1_power():
 
 # E2: закон Фарадея и закон Ома
 def e2_current():
-    phi1, phi2, dt, r = 12e-3, 4e-3, 0.02, 0.5
+    phi1, phi2, dt, r = 15e-3, 3e-3, 0.04, 0.2
     return abs(phi2 - phi1) / dt / r
 
 
@@ -447,7 +447,7 @@ def e5_direction():
 
 # E7: разгон стержня численно (метод Эйлера) до установившейся скорости
 def e7_speed():
-    m, length, r, b, f = 0.02, 0.5, 2, 0.4, 0.08
+    m, length, r, b, f = 0.03, 0.4, 1.5, 0.5, 0.06
     v, dt, t_end = 0.0, 1e-4, 30.0
     for _ in range(int(t_end / dt)):
         current = b * length * v / r
@@ -458,7 +458,7 @@ def e7_speed():
 
 # E8: напряжение на конденсаторе из потенциалов узлов, затем теплота в R₂ интегралом i²R по разряду, мкДж
 def e8_heat():
-    emf, r, r1, r2, cap = 12, 1, 3, 2, 10e-6
+    emf, r, r1, r2, cap = 9, 0.5, 2.5, 3, 20e-6
     pot = node_potentials([("S", "P", r), ("P", "T", r1), ("T", "N", r2)], {"S": emf, "N": 0})
     u = pot["T"]
     tau = r2 * cap
@@ -469,7 +469,7 @@ def e8_heat():
 
 # V1: длина нити из периода, π² = 10 по условию
 def v1_length():
-    period = 60 / 30
+    period = 40 / 25
     return G * period ** 2 / (4 * PI2_GIVEN)
 
 
@@ -516,37 +516,37 @@ def v3_period():
 # V4: таблица q(t) — период, ток, частота энергии, напряжение
 def v4_statements(task):
     ts, qs = parse_table(task["code"])
-    cap = 4e-9
+    cap = 2e-9
     period = next(t for t, q in zip(ts[1:], qs[1:]) if q == qs[0])                     # мкс
     period_energy = next(t for t, q in zip(ts[1:], qs[1:]) if q ** 2 == qs[0] ** 2)    # мкс
     q_max = max(abs(q) for q in qs)
     current = {t: math.sqrt(max(q_max ** 2 - q ** 2, 0)) for t, q in zip(ts, qs)}     # ∝ |I| из сохранения энергии
     return true_numbers([
-        period == 4,
-        current[2] == max(current.values()),
-        math.isclose(1 / (period_energy * 1e-6), 125e3),
-        math.isclose(q_max * 1e-9 / cap, 1),
+        period == 8,
         current[4] == max(current.values()),
+        math.isclose(1 / (period_energy * 1e-6), 62.5e3),
+        math.isclose(q_max * 1e-9 / cap, 3),
+        current[8] == max(current.values()),
     ])
 
 
 
 # O1: изображение построением лучей, см
 def o1_image():
-    focus, d = 1 / 5, 0.3
+    focus, d = 1 / 2.5, 0.6
     return lens_image(d, focus)[0] * 100
 
 
 
 # O2: предельный угол полного отражения, градусы
 def o2_angle():
-    return math.degrees(math.asin(1 / 1.6))
+    return math.degrees(math.asin(1 / 1.45))
 
 
 
 # O3: наибольший целый порядок, при котором sin φ < 1
 def o3_order():
-    period, wave = 1e-3 / 500, 600e-9
+    period, wave = 1e-3 / 400, 520e-9
     k = 0
     while (k + 1) * wave / period < 1:
         k += 1
@@ -564,16 +564,16 @@ def o4_lens():
 
 # Q1: перебор числа α- и β⁻-распадов
 def q1_beta():
-    a0, z0, a1, z1 = 238, 92, 226, 88
+    a0, z0, a1, z1 = 232, 90, 212, 83
     found = [(na, nb) for na in range(10) for nb in range(10) if a0 - 4 * na == a1 and z0 - 2 * na + nb == z1]
     assert len(found) == 1
     return found[0][1]
 
 
 
-# Q2: распалось ядер за 15 мин при T = 5 мин, в 10²⁰
+# Q2: распалось ядер за 32 мин при T = 8 мин, в 10²⁰
 def q2_decayed():
-    n0, half, t = 4e20, 5, 15
+    n0, half, t = 6.4e20, 8, 32
     return n0 * (1 - 0.5 ** (t / half)) / 1e20
 
 
@@ -596,7 +596,7 @@ def q3_photo():
 
 # Q4: запирающее напряжение, В
 def q4_voltage():
-    wave, work_ev = 330e-9, 2.25
+    wave, work_ev = 275e-9, 2.4
     return (H_PLANCK * C_LIGHT / wave - work_ev * E_CHARGE) / E_CHARGE
 
 

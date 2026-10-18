@@ -105,7 +105,7 @@ async function shootTheme(page, theme) {
     await openTrainer(page, "ege_physics");
     await page.evaluate(() => {
         startSession("train", ["M7"]);
-        document.getElementById("inp").value = "4";
+        document.getElementById("inp").value = "5";
         document.getElementById("b-check").click();
     });
     await shot(page, dir, "04_solution_criteria.png", "#screen .card");

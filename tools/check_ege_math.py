@@ -51,6 +51,19 @@ D4_VALUE = -14
 G4_A = ((1, 1), (5, 2))
 G4_B = ((2, 3), (3, 6))
 
+# S2: боковая поверхность цилиндра, описанного около шара; S4: образующая и диаметр основания конуса
+S2_LATERAL = 26
+S4_SLANT, S4_DIAMETER = 25, 14
+
+# R3: вратарь — число пенальти, вероятность отбить удар, сколько отбитых нужно
+R3_SHOTS, R3_P_SAVE, R3_SAVES = 4, Fraction(3, 10), 2
+
+# T1: высота камня h(t) = H0 + V0·t − G2·t² и порог высоты
+T1_H0, T1_V0, T1_G2, T1_LEVEL = sp.Rational(3, 2), 20, 5, sp.Rational(33, 2)
+
+# T3: катер — путь против течения, по течению, всё время, скорость течения
+T3_UP, T3_DOWN, T3_TIME, T3_CURRENT = 40, 36, 8, 2
+
 # R6: таблица распределения
 R6_VALUES = [2, 4, 6, 8]
 R6_PROBS = [Fraction(1, 10), Fraction(4, 10), Fraction(4, 10), Fraction(1, 10)]
@@ -227,10 +240,10 @@ def task_s1():
 
 
 
-# S2: шар вписан в цилиндр, полная поверхность цилиндра 36
+# S2: шар вписан в цилиндр (радиус основания R, высота 2R), боковая поверхность цилиндра 26
 def task_s2():
     r = sp.Symbol("R", positive=True)
-    rv = sp.solve(sp.Eq(2 * sp.pi * r ** 2 + 2 * sp.pi * r * (2 * r), 36), r)[0]
+    rv = sp.solve(sp.Eq(2 * sp.pi * r * (2 * r), S2_LATERAL), r)[0]
     return num(4 * sp.pi * rv ** 2)
 
 
@@ -249,10 +262,10 @@ def task_s3():
 
 
 
-# S4: конус с высотой 12 и образующей 13, объём / π
+# S4: конус с образующей 25 и диаметром основания 14, объём / π
 def task_s4():
-    h, l = 12, 13
-    r = math.sqrt(l ** 2 - h ** 2)
+    r = S4_DIAMETER / 2
+    h = math.sqrt(S4_SLANT ** 2 - r ** 2)
     return r ** 2 * h / 3
 
 
@@ -284,15 +297,15 @@ def task_r2():
 
 
 
-# R3: перебор всех 2⁵ последовательностей попаданий/промахов
+# R3: перебор всех 2⁴ последовательностей «отбил / пропустил»
 def task_r3():
-    p = Fraction(8, 10)
+    p = R3_P_SAVE
     total = Fraction(0)
-    for seq in itertools.product((0, 1), repeat=5):
+    for seq in itertools.product((0, 1), repeat=R3_SHOTS):
         prob = Fraction(1)
-        for hit in seq:
-            prob *= p if hit else 1 - p
-        if sum(seq) == 4:
+        for saved in seq:
+            prob *= p if saved else 1 - p
+        if sum(seq) == R3_SAVES:
             total += prob
     return float(total)
 
@@ -323,15 +336,16 @@ def task_r6():
 
 # ---------- уравнения и выражения ----------
 def task_a1():
-    roots = sp.solve(sp.Eq(sp.log(2 * X - 5, 3), 4), X)
-    roots = [r for r in roots if (2 * r - 5) > 0]
+    roots = sp.solve(sp.Eq(sp.log(4 * X - 3, 5), 3), X)
+    roots = [r for r in roots if (4 * r - 3) > 0]
     assert len(roots) == 1
     return num(roots[0])
 
 
 
 def task_a2():
-    roots = sp.solve(sp.Eq(sp.Rational(1, 4) ** (X + 1), 64), X)
+    roots = sp.solve(sp.Eq(sp.Rational(1, 9) ** (X + 1), sp.Integer(27) ** (X - 4)), X)
+    roots = [r for r in roots if r.is_real]
     assert len(roots) == 1
     return num(roots[0])
 
@@ -346,7 +360,7 @@ def task_a3():
 
 
 def task_a4():
-    return num(sp.log(56, 2) - sp.log(7, 2) + 5 ** sp.log(9, 5))
+    return num(sp.log(sp.Rational(9, 2), 3) + sp.log(6, 3) + 4 ** sp.log(sp.Rational(5, 2), 4))
 
 
 
@@ -397,11 +411,11 @@ def task_d2():
 
 
 
-# D3: наименьшее значение на отрезке: критические точки + концы
+# D3: наименьшее значение на отрезке [0; 3]: критические точки + концы
 def task_d3():
-    y = (X - 8) * sp.exp(X - 7)
-    crit = [c for c in sp.solve(sp.diff(y, X), X) if 6 <= c <= 8]
-    return min(num(y.subs(X, c)) for c in crit + [6, 8])
+    y = (X ** 2 - 3 * X + 1) * sp.exp(X - 2)
+    crit = [c for c in sp.solve(sp.diff(y, X), X) if 0 <= c <= 3]
+    return min(num(y.subs(X, c)) for c in crit + [0, 3])
 
 
 
@@ -449,7 +463,7 @@ def task_d6():
 # ---------- прикладные и текстовые задачи ----------
 def task_t1():
     t = sp.Symbol("t", real=True)
-    sol = sp.solveset(1 + 11 * t - 5 * t ** 2 >= 3, t, sp.Interval(0, sp.oo))
+    sol = sp.solveset(T1_H0 + T1_V0 * t - T1_G2 * t ** 2 >= T1_LEVEL, t, sp.Interval(0, sp.oo))
     return num(sol.measure)
 
 
@@ -463,7 +477,8 @@ def task_t2():
 
 def task_t3():
     v = sp.Symbol("v", real=True)
-    roots = [r for r in sp.solve(sp.Eq(112 / (v - 3) - 112 / (v + 3), 6), v) if r > 3]
+    eq = sp.Eq(T3_UP / (v - T3_CURRENT) + T3_DOWN / (v + T3_CURRENT), T3_TIME)
+    roots = [r for r in sp.solve(eq, v) if r > T3_CURRENT]
     assert len(roots) == 1
     return num(roots[0])
 

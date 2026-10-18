@@ -51,11 +51,28 @@ N3_POINT_RANGE = (6, 7)
 
 # Неравенство A4: что изображено на рисунках 1–4
 A4_PICTURES = {
-    1: sp.Union(sp.Interval(-sp.oo, -5), sp.Interval(2, sp.oo)),
-    2: sp.Interval(-2, 5),
-    3: sp.Interval(-5, 2),
-    4: sp.Union(sp.Interval(-sp.oo, -2), sp.Interval(5, sp.oo)),
+    1: sp.Interval(-5, 4),
+    2: sp.Interval(-4, 5),
+    3: sp.Union(sp.Interval(-sp.oo, -4), sp.Interval(5, sp.oo)),
+    4: sp.Union(sp.Interval(-sp.oo, -5), sp.Interval(4, sp.oo)),
 }
+
+# Прямоугольный треугольник T1: гипотенуза AB и cos B
+T1_AB, T1_COS_B = 45, 0.4
+
+# Равнобедренная трапеция T3: основания и боковая сторона
+T3_BIG, T3_SMALL, T3_SIDE = 22, 6, 17
+
+# Трапеция T6: площади треугольников BOC и AOB
+T6_S_BOC, T6_S_AOB = 8, 12
+
+# Касательная C2: радиус и расстояние AO
+C2_R, C2_AO = 12, 37
+
+# C7: случайные проверки утверждения «PK = PM ⇒ KM ∥ LN» для хорд KL и MN
+C7_TRIALS = 2000
+C7_MIN_GAP = 1e-3
+C7_TOL = 1e-9
 
 # Точки, через которые проходят графики на рисунках F1 и F2 (узлы сетки)
 F1_GRAPH_POINTS = {
@@ -197,13 +214,12 @@ def solve_num(tasks):
     n2 = true_option(tasks["N2"]["options"], n2_always)
     n3 = true_option(tasks["N3"]["options"],
                      lambda o: N3_POINT_RANGE[0] < float(to_sympy(o, {})) < N3_POINT_RANGE[1])
-    q = Fraction(1, 5)
-    l = sp.Symbol("l", positive=True)
+    c = Fraction(-2)
     return {
         "N1": float((Fraction(2, 5) + Fraction(7, 4)) * Fraction(16, 10)),
         "N2": n2,
         "N3": n3,
-        "N4": float(q ** 12 * (q ** -3) ** 5),
+        "N4": float((c ** 3) ** 5 * c ** -4 / c ** 8),
         "N5": float(unique(sp.solve(sp.Eq(5 * sp.Symbol("t", positive=True) ** 2, sp.Rational(245, 4))), "время падения")),
     }
 
@@ -211,14 +227,15 @@ def solve_num(tasks):
 
 # A1–A6: выражения, уравнения, неравенства
 def solve_alg(tasks):
-    a1 = sp.expand((X + 6) ** 2 - X * (X + 4)).subs(X, sp.Rational(-1, 8))
-    a2 = min(sp.solve(X ** 2 - 3 * X - 28, X))
-    sys_set = sp.Intersection(sp.solveset(X + 4 > 0, X, sp.S.Reals), sp.solveset(6 - 2 * X >= 0, X, sp.S.Reals))
+    a1 = ((2 * X - 3) ** 2 - 4 * X * (X - 5)).subs(X, sp.Rational(-1, 4))
+    a2 = min(sp.solve(2 * X ** 2 - 7 * X - 15, X))
+    sys_set = sp.Intersection(sp.solveset(2 * X + 7 > 1, X, sp.S.Reals), sp.solveset(12 - 3 * X >= 0, X, sp.S.Reals))
     a3 = true_option(tasks["A3"]["options"], lambda o: parse_interval_set(o) == sys_set)
-    ineq_set = sp.solveset(X ** 2 + 3 * X - 10 <= 0, X, sp.S.Reals)
+    ineq_set = sp.solveset(X ** 2 - X - 20 <= 0, X, sp.S.Reals)
     a4 = true_option(tasks["A4"]["options"], lambda o: A4_PICTURES[int(o.split()[-1])] == ineq_set)
     a5 = sum(sp.solveset(X ** 3 + 5 * X ** 2 - 16 * X - 80, X, sp.S.Reals))
-    a6 = sum(sp.solveset(X ** 4 - (4 * X - 5) ** 2, X, sp.S.Reals))
+    # A6: множество корней — кратный корень −1 учитывается один раз
+    a6 = sum(sp.solveset((X ** 2 + 2 * X) ** 2 - 7 * (X ** 2 + 2 * X) - 8, X, sp.S.Reals))
     return {"A1": float(a1), "A2": float(a2), "A3": a3, "A4": a4, "A5": float(a5), "A6": float(a6)}
 
 
@@ -256,7 +273,7 @@ def solve_func(tasks):
         signs.append(str(unique([i + 1 for i, o in enumerate(tasks["F2"]["options"]["right"])
                                  if all(w in o for w in want)], "знаки " + g)))
     y = sp.Symbol("y", real=True)
-    sol = sp.solve([sp.Eq(y, 3 * X - 7), sp.Eq(y, -2 * X + 8)], [X, y], dict=True)[0]
+    sol = sp.solve([sp.Eq(y, 4 * X - 9), sp.Eq(y, -3 * X + 5)], [X, y], dict=True)[0]
     bb = sp.Symbol("b")
     b_val = unique(sp.solve(sp.Eq(-1, 2 ** 2 + bb * 2 + 7), bb), "коэффициент b")
     parabola = X ** 2 + b_val * X + 7
@@ -279,15 +296,16 @@ def solve_seq():
         "S2": float(Fraction(240) * Fraction(1, 2) ** 5),
         "S3": s3,
         "S4": float(Fraction(40 - 14 - 18, 40)),
-        "S5": float(Fraction(sum(1 for t in throws if t.count("О") == 2), len(throws))),
+        "S5": float(Fraction(sum(1 for t in throws if "ОО" not in "".join(t)), len(throws))),
     }
 
 
 
 # T1–T6: треугольники и четырёхугольники (через координаты)
 def solve_tri():
-    beta = math.acos(5 / 13)
-    t1_a = (26 * math.cos(beta), 26 * math.sin(beta))
+    # B в начале координат, C на оси x, A — на луче под углом B на расстоянии AB
+    beta = math.acos(T1_COS_B)
+    t1_a = (T1_AB * math.cos(beta), T1_AB * math.sin(beta))
     t1 = dist((0, 0), (t1_a[0], 0))
     b, c = (0, 0), (1, 0)
     a = intersect(b, (math.cos(math.radians(64)), math.sin(math.radians(64))),
@@ -297,9 +315,12 @@ def solve_tri():
     d = intersect(a, (a[0] + ua[0] + uc[0], a[1] + ua[1] + uc[1]), b, c)
     t2 = angle_deg(d, a, b)
     h = sp.Symbol("h", positive=True)
-    shift = (19 - 7) // 2
-    t3_h = float(unique(sp.solve(sp.Eq(sp.sqrt(shift ** 2 + h ** 2), 10), h), "высота трапеции"))
-    t3 = shoelace([(0, 0), (19, 0), (shift + 7, t3_h), (shift, t3_h)])
+    shift = Fraction(T3_BIG - T3_SMALL, 2)
+    t3_h = float(unique(sp.solve(sp.Eq(sp.sqrt(shift ** 2 + h ** 2), T3_SIDE), h), "высота трапеции"))
+    t3_pts = [(0, 0), (T3_BIG, 0), (float(shift) + T3_SMALL, t3_h), (float(shift), t3_h)]
+    if abs(dist(t3_pts[0], t3_pts[3]) - T3_SIDE) > EPS or abs(dist(t3_pts[1], t3_pts[2]) - T3_SIDE) > EPS:
+        raise ValueError("T3: боковые стороны построенной трапеции не равны условию")
+    t3 = shoelace(t3_pts)
     t4_y = float(unique(sp.solve(sp.Eq(sp.sqrt(15 ** 2 + h ** 2), 17), h), "полудиагональ"))
     t4 = shoelace([(-15, 0), (0, t4_y), (15, 0), (0, -t4_y)])
     pa, pb, pc = (-9, 0), (0, 12), (9, 0)
@@ -310,15 +331,15 @@ def solve_tri():
 
 
 
-# T6: трапеция с основаниями AD = 10 и BC = b, высота h; подбираем b и h по площадям 9 и 25
+# T6: трапеция с основаниями AD = 10 и BC = b, высота h; подбираем b и h по площадям BOC и AOB
 def solve_t6():
     bc, h = sp.symbols("bc h", positive=True)
     ad, shift = 10, 2
     pa, pd, pb, pc = (0, 0), (ad, 0), (shift, h), (shift + bc, h)
     o = intersect(pa, pc, pb, pd)
     s_boc = sp.simplify(shoelace([pb, o, pc]))
-    s_aod = sp.simplify(shoelace([pa, o, pd]))
-    sol = sp.solve([sp.Eq(s_boc, 9), sp.Eq(s_aod, 25)], [bc, h], dict=True)
+    s_aob = sp.simplify(shoelace([pa, o, pb]))
+    sol = sp.solve([sp.Eq(s_boc, T6_S_BOC), sp.Eq(s_aob, T6_S_AOB)], [bc, h], dict=True)
     sol = unique([s for s in sol if s[bc] > 0 and s[h] > 0], "трапеция")
     return float(shoelace([pa, pb, pc, pd]).subs(sol))
 
@@ -419,13 +440,51 @@ def solve_circ():
     t = -2 * (c[0] * d[0] + c[1] * d[1])
     b = (c[0] + t * d[0], c[1] + t * d[1])
     c1 = angle_deg(b, (-1, 0), (0, 0))
-    bx = Fraction(8 ** 2, 17)
-    tangent_b = (float(bx), math.sqrt(8 ** 2 - float(bx) ** 2))
-    c2 = dist(tangent_b, (17, 0))
+    # O в начале координат, A = (AO; 0); точка касания B лежит на окружности, и OB ⊥ AB
+    bx = Fraction(C2_R ** 2, C2_AO)
+    tangent_b = (float(bx), math.sqrt(C2_R ** 2 - float(bx) ** 2))
+    ob_ab = tangent_b[0] * (tangent_b[0] - C2_AO) + tangent_b[1] ** 2
+    if abs(ob_ab) > 1e-6:
+        raise ValueError("C2: точка B не является точкой касания")
+    c2 = dist(tangent_b, (C2_AO, 0))
     ga, gb, gc = GRID_TRI["A"], GRID_TRI["B"], GRID_TRI["C"]
     c4 = math.tan(math.radians(angle_deg(ga, gb, gc)))
     return {"C1": c1, "C2": c2, "C3": shoelace(GRID_TRAP), "C4": c4,
             "C5": check_c5(), "C6": check_c6(), "C7": None}
+
+
+
+# Вторая точка пересечения прямой, проходящей через точку p окружности x² + y² = 1, с этой окружностью
+def second_on_circle(p, through):
+    dx, dy = through[0] - p[0], through[1] - p[1]
+    s = -2 * (p[0] * dx + p[1] * dy) / (dx * dx + dy * dy)
+    return p[0] + s * dx, p[1] + s * dy
+
+
+
+# C7 (kind "text"): случайная точка P внутри единичной окружности, хорда KL через P, M на окружности с PM = PK
+# (M — отражение K относительно прямой OP), хорда MN через P; проверяем KM ∥ LN
+def check_c7():
+    rnd = random.Random(RANDOM_SEED)
+    bad = 0
+    for _ in range(C7_TRIALS):
+        rho, phi = rnd.uniform(0.05, 0.9), rnd.uniform(0, 2 * math.pi)
+        p = (rho * math.cos(phi), rho * math.sin(phi))
+        alpha = rnd.uniform(0, 2 * math.pi)
+        k = (math.cos(alpha), math.sin(alpha))
+        u = (math.cos(phi), math.sin(phi))
+        proj = k[0] * u[0] + k[1] * u[1]
+        m = (2 * proj * u[0] - k[0], 2 * proj * u[1] - k[1])
+        if dist(k, m) < C7_MIN_GAP:
+            continue
+        if abs(dist(p, k) - dist(p, m)) > C7_TOL:
+            bad += 1
+            continue
+        l, n = second_on_circle(k, p), second_on_circle(m, p)
+        cross = (m[0] - k[0]) * (n[1] - l[1]) - (m[1] - k[1]) * (n[0] - l[0])
+        if abs(cross) > 1e-7 * dist(k, m) * dist(l, n) + C7_TOL:
+            bad += 1
+    return [f"C7: утверждение KM ∥ LN нарушено в {bad} случайных конфигурациях"] if bad else []
 
 
 
@@ -440,7 +499,11 @@ def main():
     etalon.update(solve_seq())
     etalon.update(solve_tri())
     etalon.update(solve_circ())
-    sys.exit(report(bank, etalon))
+    extra = check_c7()
+    for p in extra:
+        print("FAIL", p)
+    print(f"дополнительно: утверждение C7 на {C7_TRIALS} случайных конфигурациях — замечаний {len(extra)}")
+    sys.exit(report(bank, etalon) or (1 if extra else 0))
 
 
 

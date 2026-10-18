@@ -314,19 +314,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "базовый",
       "format": "задание 8 ОГЭ · свойства степеней",
-      "text": "Найдите значение выражения a¹²·(a⁻³)⁵ при a = 1/5.",
+      "text": "Найдите значение выражения (c³)⁵ · c⁻⁴ : c⁸ при c = −2.",
       "code": null,
       "figure": null,
       "options": null,
-      "answer": 125,
+      "answer": -8,
       "unit": "",
       "tol": 0,
       "hints": [
-        "Не подставляй дробь сразу. При возведении степени в степень показатели перемножаются, при умножении степеней с одинаковым основанием — складываются.",
-        "(a⁻³)⁵ = a⁻¹⁵, поэтому всё выражение равно a¹²⁻¹⁵.",
-        "a⁻³ = 1/a³. При a = 1/5 это 1 : (1/125)."
+        "Не подставляй число сразу. При возведении степени в степень показатели перемножаются, при умножении степеней с одинаковым основанием — складываются, при делении — вычитаются.",
+        "(c³)⁵ = c¹⁵, затем c¹⁵ · c⁻⁴ = c¹¹.",
+        "c¹¹ : c⁸ = c³. Подставь c = −2 и не потеряй знак: нечётная степень отрицательного числа отрицательна."
       ],
-      "solution": "a¹²·(a⁻³)⁵ = a¹²·a⁻¹⁵ = a⁻³ = 1/a³. При a = 1/5 получаем 1 : (1/5)³ = 1 : (1/125) = 125. Ответ: 125.",
+      "solution": "1) (c³)⁵ = c³·⁵ = c¹⁵. 2) c¹⁵ · c⁻⁴ = c¹⁵⁻⁴ = c¹¹. 3) c¹¹ : c⁸ = c¹¹⁻⁸ = c³. 4) При c = −2: (−2)³ = −8. Ответ: −8.",
       "part2": false
     },
     {
@@ -356,19 +356,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "базовый",
       "format": "задание 8 ОГЭ · формулы сокращённого умножения",
-      "text": "Найдите значение выражения (x + 6)² − x(x + 4) при x = −1/8.",
+      "text": "Найдите значение выражения (2x − 3)² − 4x(x − 5) при x = −0,25.",
       "code": null,
       "figure": null,
       "options": null,
-      "answer": 35,
+      "answer": 7,
       "unit": "",
       "tol": 0,
       "hints": [
-        "Не подставляй дробь сразу — сначала упрости выражение. Квадрат суммы: (x + 6)² = x² + 12x + 36.",
-        "Раскрой скобки во втором слагаемом и приведи подобные — x² сократится.",
-        "Получится 8x + 36. Подставь x = −1/8."
+        "Не подставляй число сразу — сначала упрости выражение. Квадрат разности: (2x − 3)² = 4x² − 12x + 9.",
+        "Раскрой скобки во втором слагаемом: 4x(x − 5) = 4x² − 20x. При вычитании знаки меняются, а 4x² сократится.",
+        "Получится 8x + 9. Подставь x = −0,25."
       ],
-      "solution": "(x + 6)² − x(x + 4) = x² + 12x + 36 − x² − 4x = 8x + 36. При x = −1/8: 8·(−1/8) + 36 = −1 + 36 = 35. Ответ: 35.",
+      "solution": "1) (2x − 3)² = 4x² − 12x + 9, 4x(x − 5) = 4x² − 20x. 2) (2x − 3)² − 4x(x − 5) = 4x² − 12x + 9 − 4x² + 20x = 8x + 9. 3) При x = −0,25: 8·(−0,25) + 9 = −2 + 9 = 7. Проверка подстановкой в исходное выражение: (−0,5 − 3)² − 4·(−0,25)·(−5,25) = 12,25 − 5,25 = 7. Ответ: 7.",
       "part2": false
     },
     {
@@ -377,19 +377,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "базовый",
       "format": "задание 9 ОГЭ · квадратное уравнение",
-      "text": "Решите уравнение x² − 3x = 28. Если уравнение имеет более одного корня, в ответ запишите меньший из корней.",
+      "text": "Решите уравнение 2x² − 7x = 15. Если уравнение имеет более одного корня, в ответ запишите меньший из корней.",
       "code": null,
       "figure": null,
       "options": null,
-      "answer": -4,
+      "answer": -1.5,
       "unit": "",
       "tol": 0,
       "hints": [
-        "Перенеси всё в левую часть, чтобы справа остался 0: x² − 3x − 28 = 0.",
-        "Найди дискриминант D = b² − 4ac или подбери корни по теореме Виета: их сумма равна 3, произведение −28.",
-        "D = 9 + 112 = 121, √D = 11; x = (3 ± 11)/2."
+        "Перенеси всё в левую часть, чтобы справа остался 0: 2x² − 7x − 15 = 0.",
+        "Найди дискриминант D = b² − 4ac, где a = 2, b = −7, c = −15.",
+        "D = 49 + 120 = 169, √D = 13; x = (7 ± 13)/4."
       ],
-      "solution": "x² − 3x − 28 = 0, D = (−3)² − 4·1·(−28) = 9 + 112 = 121. x₁ = (3 + 11)/2 = 7, x₂ = (3 − 11)/2 = −4. Меньший корень −4. Ответ: −4.",
+      "solution": "1) 2x² − 7x − 15 = 0, D = (−7)² − 4·2·(−15) = 49 + 120 = 169. 2) x₁ = (7 + 13)/4 = 5, x₂ = (7 − 13)/4 = −1,5. 3) Проверка: 2·25 − 7·5 = 15 и 2·2,25 + 7·1,5 = 4,5 + 10,5 = 15. Меньший корень −1,5. Ответ: −1,5.",
       "part2": false
     },
     {
@@ -398,24 +398,24 @@ BANKS["oge_math"] = {
       "kind": "choice",
       "level": "базовый",
       "format": "задание 13 ОГЭ · система неравенств",
-      "text": "Укажите решение системы неравенств\nx + 4 > 0,\n6 − 2x ≥ 0.",
+      "text": "Укажите решение системы неравенств\n2x + 7 > 1,\n12 − 3x ≥ 0.",
       "code": null,
       "figure": null,
       "options": [
-        "(−∞; −4)",
-        "(−4; 3]",
-        "[3; +∞)",
-        "(−∞; −4) ∪ [3; +∞)"
+        "(−∞; −3)",
+        "(−3; 4]",
+        "[4; +∞)",
+        "(−∞; −3) ∪ [4; +∞)"
       ],
       "answer": "2",
       "unit": "",
       "tol": 0,
       "hints": [
         "Реши каждое неравенство отдельно, а потом найди общую часть решений.",
-        "Первое: x > −4. Второе: −2x ≥ −6; при делении на отрицательное число знак неравенства меняется на противоположный.",
-        "x > −4 и x ≤ 3. Проверь, какие концы промежутка входят в ответ, а какие нет."
+        "Первое: 2x > −6, то есть x > −3. Второе: −3x ≥ −12; при делении на отрицательное число знак неравенства меняется на противоположный.",
+        "x > −3 и x ≤ 4. Проверь, какие концы промежутка входят в ответ, а какие нет."
       ],
-      "solution": "x + 4 > 0 → x > −4. 6 − 2x ≥ 0 → −2x ≥ −6 → x ≤ 3. Общая часть: −4 < x ≤ 3, то есть (−4; 3]. Число −4 не входит (неравенство строгое), число 3 входит. Ответ: 2.",
+      "solution": "1) 2x + 7 > 1 → 2x > −6 → x > −3. 2) 12 − 3x ≥ 0 → −3x ≥ −12 → x ≤ 4. 3) Общая часть: −3 < x ≤ 4, то есть (−3; 4]. Число −3 не входит (неравенство строгое), число 4 входит. Ответ: 2.",
       "part2": false
     },
     {
@@ -424,24 +424,24 @@ BANKS["oge_math"] = {
       "kind": "choice",
       "level": "базовый",
       "format": "задание 13 ОГЭ · квадратное неравенство",
-      "text": "Укажите решение неравенства x² + 3x − 10 ≤ 0. На каком рисунке изображено множество его решений?",
+      "text": "Укажите решение неравенства x² − x − 20 ≤ 0. На каком рисунке изображено множество его решений?",
       "code": null,
-      "figure": "<svg viewBox='0 0 410 200' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><path d='M52 28 L104 28' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M258 28 L376 28' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M48 28 L380 28' stroke='#14213D' stroke-width='1.5' fill='none'/><polygon points='392,28 382,32 382,24' fill='#14213D'/><text x='392' y='46' text-anchor='middle' font-size='13' font-style='italic' fill='#14213D'>x</text><text x='22' y='33' text-anchor='middle' font-size='14' fill='#14213D'>1)</text><circle cx='104' cy='28' r='4.5' fill='#14213D'/><text x='104' y='49' text-anchor='middle' font-size='13' fill='#14213D'>−5</text><circle cx='258' cy='28' r='4.5' fill='#14213D'/><text x='258' y='49' text-anchor='middle' font-size='13' fill='#14213D'>2</text><path d='M170 74 L324 74' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M48 74 L380 74' stroke='#14213D' stroke-width='1.5' fill='none'/><polygon points='392,74 382,78 382,70' fill='#14213D'/><text x='392' y='92' text-anchor='middle' font-size='13' font-style='italic' fill='#14213D'>x</text><text x='22' y='79' text-anchor='middle' font-size='14' fill='#14213D'>2)</text><circle cx='170' cy='74' r='4.5' fill='#14213D'/><text x='170' y='95' text-anchor='middle' font-size='13' fill='#14213D'>−2</text><circle cx='324' cy='74' r='4.5' fill='#14213D'/><text x='324' y='95' text-anchor='middle' font-size='13' fill='#14213D'>5</text><path d='M104 120 L258 120' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M48 120 L380 120' stroke='#14213D' stroke-width='1.5' fill='none'/><polygon points='392,120 382,124 382,116' fill='#14213D'/><text x='392' y='138' text-anchor='middle' font-size='13' font-style='italic' fill='#14213D'>x</text><text x='22' y='125' text-anchor='middle' font-size='14' fill='#14213D'>3)</text><circle cx='104' cy='120' r='4.5' fill='#14213D'/><text x='104' y='141' text-anchor='middle' font-size='13' fill='#14213D'>−5</text><circle cx='258' cy='120' r='4.5' fill='#14213D'/><text x='258' y='141' text-anchor='middle' font-size='13' fill='#14213D'>2</text><path d='M52 166 L170 166' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M324 166 L376 166' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M48 166 L380 166' stroke='#14213D' stroke-width='1.5' fill='none'/><polygon points='392,166 382,170 382,162' fill='#14213D'/><text x='392' y='184' text-anchor='middle' font-size='13' font-style='italic' fill='#14213D'>x</text><text x='22' y='171' text-anchor='middle' font-size='14' fill='#14213D'>4)</text><circle cx='170' cy='166' r='4.5' fill='#14213D'/><text x='170' y='187' text-anchor='middle' font-size='13' fill='#14213D'>−2</text><circle cx='324' cy='166' r='4.5' fill='#14213D'/><text x='324' y='187' text-anchor='middle' font-size='13' fill='#14213D'>5</text></svg>",
+      "figure": "<svg viewBox='0 0 410 200' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><path d='M104 28 L302 28' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M48 28 L380 28' stroke='#14213D' stroke-width='1.5' fill='none'/><polygon points='392,28 382,32 382,24' fill='#14213D'/><text x='392' y='46' text-anchor='middle' font-size='13' font-style='italic' fill='#14213D'>x</text><text x='22' y='33' text-anchor='middle' font-size='14' fill='#14213D'>1)</text><circle cx='104' cy='28' r='4.5' fill='#14213D'/><text x='104' y='49' text-anchor='middle' font-size='13' fill='#14213D'>−5</text><circle cx='302' cy='28' r='4.5' fill='#14213D'/><text x='302' y='49' text-anchor='middle' font-size='13' fill='#14213D'>4</text><path d='M126 74 L324 74' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M48 74 L380 74' stroke='#14213D' stroke-width='1.5' fill='none'/><polygon points='392,74 382,78 382,70' fill='#14213D'/><text x='392' y='92' text-anchor='middle' font-size='13' font-style='italic' fill='#14213D'>x</text><text x='22' y='79' text-anchor='middle' font-size='14' fill='#14213D'>2)</text><circle cx='126' cy='74' r='4.5' fill='#14213D'/><text x='126' y='95' text-anchor='middle' font-size='13' fill='#14213D'>−4</text><circle cx='324' cy='74' r='4.5' fill='#14213D'/><text x='324' y='95' text-anchor='middle' font-size='13' fill='#14213D'>5</text><path d='M52 120 L126 120' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M324 120 L376 120' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M48 120 L380 120' stroke='#14213D' stroke-width='1.5' fill='none'/><polygon points='392,120 382,124 382,116' fill='#14213D'/><text x='392' y='138' text-anchor='middle' font-size='13' font-style='italic' fill='#14213D'>x</text><text x='22' y='125' text-anchor='middle' font-size='14' fill='#14213D'>3)</text><circle cx='126' cy='120' r='4.5' fill='#14213D'/><text x='126' y='141' text-anchor='middle' font-size='13' fill='#14213D'>−4</text><circle cx='324' cy='120' r='4.5' fill='#14213D'/><text x='324' y='141' text-anchor='middle' font-size='13' fill='#14213D'>5</text><path d='M52 166 L104 166' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M302 166 L376 166' stroke='#8FB0DA' stroke-width='8' stroke-linecap='butt' fill='none'/><path d='M48 166 L380 166' stroke='#14213D' stroke-width='1.5' fill='none'/><polygon points='392,166 382,170 382,162' fill='#14213D'/><text x='392' y='184' text-anchor='middle' font-size='13' font-style='italic' fill='#14213D'>x</text><text x='22' y='171' text-anchor='middle' font-size='14' fill='#14213D'>4)</text><circle cx='104' cy='166' r='4.5' fill='#14213D'/><text x='104' y='187' text-anchor='middle' font-size='13' fill='#14213D'>−5</text><circle cx='302' cy='166' r='4.5' fill='#14213D'/><text x='302' y='187' text-anchor='middle' font-size='13' fill='#14213D'>4</text></svg>",
       "options": [
         "рисунок 1",
         "рисунок 2",
         "рисунок 3",
         "рисунок 4"
       ],
-      "answer": "3",
+      "answer": "2",
       "unit": "",
       "tol": 0,
       "hints": [
-        "Найди корни квадратного трёхчлена x² + 3x − 10, затем реши неравенство методом интервалов или по графику параболы.",
-        "Корни: −5 и 2 (по теореме Виета их сумма −3, произведение −10). Ветви параболы y = x² + 3x − 10 направлены вверх.",
-        "Парабола не выше оси Ox между корнями, и концы входят (знак ≤): нужен отрезок от −5 до 2 с закрашенными концами."
+        "Найди корни квадратного трёхчлена x² − x − 20, затем реши неравенство методом интервалов или по графику параболы.",
+        "Корни: −4 и 5 (по теореме Виета их сумма 1, произведение −20). Ветви параболы y = x² − x − 20 направлены вверх.",
+        "Парабола не выше оси Ox между корнями, и концы входят (знак ≤): нужен отрезок от −4 до 5 с закрашенными концами."
       ],
-      "solution": "x² + 3x − 10 = 0 → x₁ = −5, x₂ = 2. Ветви параболы y = x² + 3x − 10 направлены вверх, поэтому y ≤ 0 на отрезке между корнями: −5 ≤ x ≤ 2. Отрезок [−5; 2] с закрашенными концами изображён на рисунке 3. Ответ: 3.",
+      "solution": "1) x² − x − 20 = 0: D = 1 + 80 = 81, x₁ = (1 − 9)/2 = −4, x₂ = (1 + 9)/2 = 5. 2) Ветви параболы y = x² − x − 20 направлены вверх, поэтому y ≤ 0 на отрезке между корнями: −4 ≤ x ≤ 5. 3) Отрезок [−4; 5] с закрашенными концами изображён на рисунке 2 (на рисунке 1 — отрезок [−5; 4], это решение неравенства x² + x − 20 ≤ 0). Ответ: 2.",
       "part2": false
     },
     {
@@ -485,19 +485,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "повышенный",
       "format": "задание 20 ОГЭ · уравнение",
-      "text": "Решите уравнение x⁴ = (4x − 5)². В ответ запишите сумму всех его корней.",
+      "text": "Решите уравнение (x² + 2x)² − 7(x² + 2x) − 8 = 0. В ответ запишите сумму всех его корней.",
       "code": null,
       "figure": null,
       "options": null,
-      "answer": -4,
+      "answer": -3,
       "unit": "",
       "tol": 0,
       "hints": [
-        "Перенеси всё в одну часть и разложи по формуле разности квадратов: x⁴ − (4x − 5)² = (x² − (4x − 5))·(x² + (4x − 5)).",
-        "Произведение равно нулю, значит x² − 4x + 5 = 0 или x² + 4x − 5 = 0. Реши каждое уравнение и не забудь проверить дискриминант.",
-        "У первого уравнения D = 16 − 20 < 0 — корней нет. У второго корни 1 и −5."
+        "Выражение x² + 2x встречается дважды — сделай замену t = x² + 2x.",
+        "t² − 7t − 8 = 0, откуда t = 8 или t = −1. Вернись к переменной x и реши два квадратных уравнения.",
+        "x² + 2x = 8 даёт x = 2 и x = −4; x² + 2x = −1 равносильно (x + 1)² = 0, x = −1. Каждый корень считай один раз."
       ],
-      "solution": "x⁴ − (4x − 5)² = 0, (x² − 4x + 5)(x² + 4x − 5) = 0. 1) x² − 4x + 5 = 0: D = 16 − 20 = −4 < 0, корней нет. 2) x² + 4x − 5 = 0: x = 1 или x = −5. Сумма корней 1 + (−5) = −4. Ответ: −4.",
+      "solution": "1) Замена t = x² + 2x: t² − 7t − 8 = 0, D = 49 + 32 = 81, t = (7 ± 9)/2, то есть t = 8 или t = −1. 2) x² + 2x = 8 ⇔ x² + 2x − 8 = 0 ⇔ x = 2 или x = −4. 3) x² + 2x = −1 ⇔ x² + 2x + 1 = 0 ⇔ (x + 1)² = 0 ⇔ x = −1. 4) Корни уравнения: −4; −1; 2. Проверка для x = −1: x² + 2x = −1, и (−1)² − 7·(−1) − 8 = 0. Сумма корней −4 + (−1) + 2 = −3. Ответ: −3.",
       "part2": true,
       "criteria": [
         [
@@ -587,19 +587,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "базовый",
       "format": "задания 9, 11 ОГЭ · пересечение графиков",
-      "text": "Найдите координаты точки пересечения прямых y = 3x − 7 и y = −2x + 8. В ответ запишите сумму абсциссы и ординаты этой точки.",
+      "text": "Найдите координаты точки пересечения прямых y = 4x − 9 и y = −3x + 5. В ответ запишите сумму абсциссы и ординаты этой точки.",
       "code": null,
       "figure": null,
       "options": null,
-      "answer": 5,
+      "answer": 1,
       "unit": "",
       "tol": 0,
       "hints": [
         "В точке пересечения у обеих прямых одинаковые x и y. Приравняй правые части уравнений.",
-        "3x − 7 = −2x + 8, откуда 5x = 15.",
-        "x = 3. Подставь в любое из уравнений: y = 3·3 − 7 = 2."
+        "4x − 9 = −3x + 5, откуда 7x = 14.",
+        "x = 2. Подставь в любое из уравнений: y = 4·2 − 9 = −1."
       ],
-      "solution": "3x − 7 = −2x + 8 → 5x = 15 → x = 3, y = 3·3 − 7 = 2. Точка пересечения (3; 2); проверка по второй прямой: −2·3 + 8 = 2. Сумма координат 3 + 2 = 5. Ответ: 5.",
+      "solution": "1) 4x − 9 = −3x + 5 → 7x = 14 → x = 2. 2) y = 4·2 − 9 = −1; проверка по второй прямой: −3·2 + 5 = −1. 3) Точка пересечения (2; −1), сумма координат 2 + (−1) = 1. Ответ: 1.",
       "part2": false
     },
     {
@@ -748,19 +748,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "базовый",
       "format": "задание 10 ОГЭ · перебор исходов",
-      "text": "Симметричную монету бросают три раза. Найдите вероятность того, что орёл выпадет ровно два раза.",
+      "text": "Симметричную монету бросают три раза. Найдите вероятность того, что орёл ни разу не выпадет в двух бросках подряд.",
       "code": null,
       "figure": null,
       "options": null,
-      "answer": 0.375,
+      "answer": 0.625,
       "unit": "",
       "tol": 0,
       "hints": [
-        "Выпиши все равновозможные исходы трёх бросков: каждый бросок даёт О (орёл) или Р (решку). Сколько всего вариантов?",
-        "Всего 2·2·2 = 8 исходов. Найди среди них те, где ровно два орла.",
-        "Подходят ООР, ОРО, РОО — 3 исхода из 8."
+        "Выпиши все равновозможные исходы трёх бросков: каждый бросок даёт О (орёл) или Р (решку). Всего 2·2·2 = 8 исходов.",
+        "Вычеркни исходы, в которых два орла стоят рядом: ООО, ООР, РОО.",
+        "Остались ОРО, ОРР, РОР, РРО, РРР — 5 исходов из 8."
       ],
-      "solution": "Исходы: ООО, ООР, ОРО, ОРР, РОО, РОР, РРО, РРР — всего 8, все равновозможны. Ровно два орла: ООР, ОРО, РОО — 3 исхода. P = 3/8 = 0,375. Ответ: 0,375.",
+      "solution": "1) Исходы: ООО, ООР, ОРО, ОРР, РОО, РОР, РРО, РРР — всего 8, все равновозможны. 2) Два орла подряд есть в исходах ООО, ООР, РОО — 3 исхода. 3) Подходят остальные 8 − 3 = 5 исходов: ОРО, ОРР, РОР, РРО, РРР. P = 5/8 = 0,625. Ответ: 0,625.",
       "part2": false
     },
     {
@@ -769,19 +769,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "базовый",
       "format": "задание 15 ОГЭ · прямоугольный треугольник",
-      "text": "В треугольнике ABC угол C равен 90°, AB = 26, cos B = 5/13. Найдите BC.",
+      "text": "В треугольнике ABC угол C равен 90°, AB = 45, cos B = 0,4. Найдите BC.",
       "code": null,
-      "figure": "<svg viewBox='0 0 340 180' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><polygon points='304,150 40,40 40,150' fill='none' stroke='#14213D' stroke-width='2' stroke-linejoin='round'/><polyline points='51,150 51,139 40,139' fill='none' stroke='#14213D' stroke-width='1.3' stroke-linejoin='round'/><text x='318.7' y='158.1' text-anchor='middle' fill='#14213D'>A</text><text x='28.5' y='35.4' text-anchor='middle' fill='#14213D'>B</text><text x='26.2' y='160.8' text-anchor='middle' fill='#14213D'>C</text></svg>",
+      "figure": "<svg viewBox='0 0 340 180' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><polygon points='292,150 40,40 40,150' fill='none' stroke='#14213D' stroke-width='2' stroke-linejoin='round'/><polyline points='51,150 51,139 40,139' fill='none' stroke='#14213D' stroke-width='1.3' stroke-linejoin='round'/><text x='306.7' y='158.1' text-anchor='middle' fill='#14213D'>A</text><text x='28.5' y='35.4' text-anchor='middle' fill='#14213D'>B</text><text x='26.2' y='160.8' text-anchor='middle' fill='#14213D'>C</text></svg>",
       "options": null,
-      "answer": 10,
+      "answer": 18,
       "unit": "",
       "tol": 0,
       "hints": [
         "Косинус острого угла прямоугольного треугольника — отношение прилежащего катета к гипотенузе.",
         "Для угла B прилежащий катет — BC, гипотенуза — AB: cos B = BC/AB.",
-        "BC = AB·cos B = 26·5/13."
+        "BC = AB·cos B = 45·0,4."
       ],
-      "solution": "В прямоугольном треугольнике cos B = BC/AB, откуда BC = AB·cos B = 26·5/13 = 10. (Второй катет: AC = √(26² − 10²) = 24.) Ответ: 10.",
+      "solution": "1) В прямоугольном треугольнике ABC гипотенуза — AB, катет BC прилежит к углу B, поэтому cos B = BC/AB. 2) BC = AB·cos B = 45·0,4 = 18. 3) Проверка: 18/45 = 0,4. Ответ: 18.",
       "part2": false
     },
     {
@@ -811,19 +811,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "базовый",
       "format": "задание 17 ОГЭ · трапеция",
-      "text": "Основания равнобедренной трапеции равны 7 и 19, а боковая сторона равна 10. Найдите площадь трапеции.",
+      "text": "Основания равнобедренной трапеции равны 6 и 22, а боковая сторона равна 17. Найдите площадь трапеции.",
       "code": null,
-      "figure": "<svg viewBox='0 0 365 195' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><polygon points='40,160 130,40 235,40 325,160' fill='none' stroke='#14213D' stroke-width='2' stroke-linejoin='round'/><text x='26.2' y='170.8' text-anchor='middle' fill='#14213D'>A</text><text x='120.1' y='33.7' text-anchor='middle' fill='#14213D'>B</text><text x='244.9' y='33.7' text-anchor='middle' fill='#14213D'>C</text><text x='338.8' y='170.8' text-anchor='middle' fill='#14213D'>D</text><text x='182.5' y='33' text-anchor='middle' fill='#4F5D78'>7</text><text x='182.5' y='177' text-anchor='middle' fill='#4F5D78'>19</text><text x='73.8' y='96.6' text-anchor='middle' fill='#4F5D78'>10</text><text x='291.2' y='96.6' text-anchor='middle' fill='#4F5D78'>10</text></svg>",
+      "figure": "<svg viewBox='0 0 345 225' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><polygon points='50,195 138,30 204,30 292,195' fill='none' stroke='#14213D' stroke-width='2' stroke-linejoin='round'/><text x='36.2' y='205.8' text-anchor='middle' fill='#14213D'>A</text><text x='128' y='24' text-anchor='middle' fill='#14213D'>B</text><text x='214' y='24' text-anchor='middle' fill='#14213D'>C</text><text x='305.8' y='205.8' text-anchor='middle' fill='#14213D'>D</text><text x='171' y='23' text-anchor='middle' fill='#4F5D78'>6</text><text x='171' y='213' text-anchor='middle' fill='#4F5D78'>22</text><text x='80' y='109.5' text-anchor='middle' fill='#4F5D78'>17</text><text x='262' y='109.5' text-anchor='middle' fill='#4F5D78'>17</text></svg>",
       "options": null,
-      "answer": 104,
+      "answer": 210,
       "unit": "",
       "tol": 0,
       "hints": [
         "Площадь трапеции S = (a + b)/2·h. Неизвестна высота — опусти её из вершины меньшего основания.",
-        "В равнобедренной трапеции высота отсекает от большего основания отрезок (19 − 7)/2 = 6. Высота — катет прямоугольного треугольника с гипотенузой 10.",
-        "h = √(10² − 6²) = 8; S = (7 + 19)/2·8."
+        "В равнобедренной трапеции высота отсекает от большего основания отрезок (22 − 6)/2 = 8. Высота — катет прямоугольного треугольника с гипотенузой 17.",
+        "h = √(17² − 8²) = 15; S = (6 + 22)/2·15."
       ],
-      "solution": "Опустим высоту BH на основание AD. В равнобедренной трапеции AH = (AD − BC)/2 = (19 − 7)/2 = 6. Из прямоугольного треугольника ABH: BH = √(AB² − AH²) = √(100 − 36) = 8. S = (7 + 19)/2·8 = 13·8 = 104. Ответ: 104.",
+      "solution": "1) Опустим высоту BH на основание AD. В равнобедренной трапеции AH = (AD − BC)/2 = (22 − 6)/2 = 8. 2) Из прямоугольного треугольника ABH: BH = √(AB² − AH²) = √(289 − 64) = √225 = 15. 3) S = (6 + 22)/2·15 = 14·15 = 210. Ответ: 210.",
       "part2": false
     },
     {
@@ -874,19 +874,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "высокий",
       "format": "задание 25 ОГЭ · трапеция и площади",
-      "text": "Диагонали трапеции ABCD с основаниями BC и AD пересекаются в точке O. Площади треугольников BOC и AOD равны 9 и 25 соответственно. Найдите площадь трапеции.",
+      "text": "Диагонали трапеции ABCD с основаниями BC и AD пересекаются в точке O. Площадь треугольника BOC равна 8, а площадь треугольника AOB равна 12. Найдите площадь трапеции.",
       "code": null,
-      "figure": "<svg viewBox='0 0 360 200' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><polygon points='110,50 192.5,95 290,50' fill='#E3ECF7' stroke='none' stroke-width='0' stroke-linejoin='round'/><polygon points='30,170 192.5,95 330,170' fill='#E3ECF7' stroke='none' stroke-width='0' stroke-linejoin='round'/><polygon points='30,170 110,50 290,50 330,170' fill='none' stroke='#14213D' stroke-width='2' stroke-linejoin='round'/><path d='M30 170 L290 50' stroke='#14213D' stroke-width='1.5' fill='none'/><path d='M110 50 L330 170' stroke='#14213D' stroke-width='1.5' fill='none'/><text x='197.5' y='65' text-anchor='middle' font-size='14' fill='#4F5D78'>9</text><text x='184.2' y='150' text-anchor='middle' font-size='14' fill='#4F5D78'>25</text><text x='16' y='180.3' text-anchor='middle' fill='#14213D'>A</text><text x='98' y='46' text-anchor='middle' fill='#14213D'>B</text><text x='302.9' y='47.3' text-anchor='middle' fill='#14213D'>C</text><text x='343.8' y='180.9' text-anchor='middle' fill='#14213D'>D</text><text x='208.5' y='100' text-anchor='middle' fill='#14213D'>O</text></svg>",
+      "figure": "<svg viewBox='0 0 360 200' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><polygon points='90,50 186,98 290,50' fill='#E3ECF7' stroke='none' stroke-width='0' stroke-linejoin='round'/><polygon points='30,170 186,98 90,50' fill='#E3ECF7' stroke='none' stroke-width='0' stroke-linejoin='round'/><polygon points='30,170 90,50 290,50 330,170' fill='none' stroke='#14213D' stroke-width='2' stroke-linejoin='round'/><path d='M30 170 L290 50' stroke='#14213D' stroke-width='1.5' fill='none'/><path d='M90 50 L330 170' stroke='#14213D' stroke-width='1.5' fill='none'/><text x='188.7' y='71' text-anchor='middle' font-size='14' fill='#4F5D78'>8</text><text x='102' y='111' text-anchor='middle' font-size='14' fill='#4F5D78'>12</text><text x='16' y='180.3' text-anchor='middle' fill='#14213D'>A</text><text x='80' y='46' text-anchor='middle' fill='#14213D'>B</text><text x='302.9' y='47.3' text-anchor='middle' fill='#14213D'>C</text><text x='343.8' y='180.9' text-anchor='middle' fill='#14213D'>D</text><text x='186' y='120' text-anchor='middle' fill='#14213D'>O</text></svg>",
       "options": null,
-      "answer": 64,
+      "answer": 50,
       "unit": "",
       "tol": 0,
       "hints": [
-        "Треугольники BOC и DOA подобны (углы при O вертикальные, а углы при основаниях — накрест лежащие при параллельных прямых). Отношение площадей подобных треугольников равно квадрату коэффициента подобия.",
-        "k² = 9/25, значит BO : OD = 3 : 5. Треугольники AOB и AOD имеют общую высоту из вершины A, поэтому их площади относятся как BO : OD.",
-        "S(AOB) = 25·3/5 = 15. Так же S(COD) = 15: треугольники ABD и ACD равновелики. Площадь трапеции = 9 + 25 + 15 + 15."
+        "Треугольники с общей вершиной, основания которых лежат на одной прямой, относятся по площади как эти основания. Сравни треугольники BOC и COD: у них общая вершина C, а основания BO и OD лежат на прямой BD.",
+        "Треугольники ABD и ACD равновелики (общее основание AD, равные высоты), поэтому S(COD) = S(AOB) = 12. Тогда BO : OD = S(BOC) : S(COD) = 8 : 12 = 2 : 3.",
+        "Треугольники AOB и AOD имеют общую вершину A: S(AOD) = S(AOB)·OD/BO = 12·3/2 = 18. Площадь трапеции = 8 + 12 + 12 + 18."
       ],
-      "solution": "Треугольники BOC и DOA подобны по двум углам: углы при вершине O вертикальные, углы OBC и ODA — накрест лежащие при параллельных прямых BC и AD. S(BOC) : S(AOD) = k² = 9 : 25, значит k = 3/5 и BO : OD = 3 : 5. Треугольники AOB и AOD имеют общую высоту из вершины A, поэтому S(AOB) : S(AOD) = BO : OD = 3 : 5 и S(AOB) = 25·3/5 = 15. Треугольники ABD и ACD имеют общее основание AD и равные высоты (расстояние между основаниями), значит, они равновелики; вычитая из обоих S(AOD), получаем S(COD) = S(AOB) = 15. Площадь трапеции: 9 + 25 + 15 + 15 = 64. Ответ: 64.",
+      "solution": "1) Треугольники ABD и ACD имеют общее основание AD и равные высоты (расстояние между прямыми BC и AD), значит, они равновелики. Вычитая из обоих S(AOD), получаем S(COD) = S(AOB) = 12. 2) У треугольников BOC и COD общая высота из вершины C, поэтому BO : OD = S(BOC) : S(COD) = 8 : 12 = 2 : 3. 3) У треугольников AOB и AOD общая высота из вершины A, поэтому S(AOD) = S(AOB)·OD/BO = 12·3/2 = 18. 4) Площадь трапеции: 8 + 12 + 12 + 18 = 50. Проверка: треугольники BOC и DOA подобны с коэффициентом BO : OD = 2 : 3, и отношение их площадей 8 : 18 = 4 : 9 = (2/3)². Ответ: 50.",
       "part2": true
     },
     {
@@ -916,19 +916,19 @@ BANKS["oge_math"] = {
       "kind": "number",
       "level": "базовый",
       "format": "задание 16 ОГЭ · касательная",
-      "text": "Из точки A проведена касательная AB к окружности с центром O (B — точка касания). Найдите AB, если радиус окружности равен 8, а AO = 17.",
+      "text": "Из точки A проведена касательная AB к окружности с центром O (B — точка касания). Найдите AB, если радиус окружности равен 12, а AO = 37.",
       "code": null,
-      "figure": "<svg viewBox='0 0 260 190' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><circle cx='90' cy='110' r='64' fill='none' stroke='#14213D' stroke-width='2'/><path d='M90 110 L226 110' stroke='#14213D' stroke-width='1.5' fill='none'/><path d='M90 110 L120.1 53.5' stroke='#14213D' stroke-width='1.5' fill='none'/><path d='M226 110 L120.1 53.5' stroke='#14213D' stroke-width='2' fill='none'/><path d='M120.1 53.5 L83.1 33.8' stroke='#14213D' stroke-width='2' fill='none'/><polyline points='115.4,62.4 124.2,67.1 128.9,58.2' fill='none' stroke='#14213D' stroke-width='1.3' stroke-linejoin='round'/><circle cx='90' cy='110' r='3' fill='#14213D'/><circle cx='226' cy='110' r='3' fill='#14213D'/><text x='86' y='130' text-anchor='middle' fill='#14213D'>O</text><text x='240' y='115' text-anchor='middle' fill='#14213D'>A</text><text x='126.7' y='46.2' text-anchor='middle' fill='#14213D'>B</text></svg>",
+      "figure": "<svg viewBox='0 0 285 190' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><circle cx='90' cy='110' r='52' fill='none' stroke='#14213D' stroke-width='2'/><path d='M90 110 L250.3 110' stroke='#14213D' stroke-width='1.5' fill='none'/><path d='M90 110 L106.9 60.8' stroke='#14213D' stroke-width='1.5' fill='none'/><path d='M250.3 110 L106.9 60.8' stroke='#14213D' stroke-width='2' fill='none'/><path d='M106.9 60.8 L67.1 47.2' stroke='#14213D' stroke-width='2' fill='none'/><polyline points='103.9,69.3 112.5,72.2 115.4,63.7' fill='none' stroke='#14213D' stroke-width='1.3' stroke-linejoin='round'/><circle cx='90' cy='110' r='3' fill='#14213D'/><circle cx='250.3' cy='110' r='3' fill='#14213D'/><text x='86' y='130' text-anchor='middle' fill='#14213D'>O</text><text x='264.3' y='115' text-anchor='middle' fill='#14213D'>A</text><text x='113.9' y='51.8' text-anchor='middle' fill='#14213D'>B</text></svg>",
       "options": null,
-      "answer": 15,
+      "answer": 35,
       "unit": "",
       "tol": 0,
       "hints": [
         "Касательная перпендикулярна радиусу, проведённому в точку касания.",
         "Треугольник OBA прямоугольный с прямым углом B, AO — его гипотенуза.",
-        "AB = √(17² − 8²) = √(289 − 64)."
+        "AB = √(37² − 12²) = √(1369 − 144)."
       ],
-      "solution": "Радиус OB перпендикулярен касательной AB, поэтому треугольник OBA прямоугольный с гипотенузой AO. По теореме Пифагора AB = √(AO² − OB²) = √(289 − 64) = √225 = 15. Ответ: 15.",
+      "solution": "1) Радиус OB перпендикулярен касательной AB, поэтому треугольник OBA прямоугольный с прямым углом B и гипотенузой AO. 2) По теореме Пифагора AB² = AO² − OB² = 1369 − 144 = 1225. 3) AB = √1225 = 35. Ответ: 35.",
       "part2": false
     },
     {
@@ -1021,19 +1021,19 @@ BANKS["oge_math"] = {
       "kind": "text",
       "level": "повышенный",
       "format": "задание 24 ОГЭ · доказательство",
-      "text": "Окружности с центрами O₁ и O₂ пересекаются в точках A и B. Докажите, что прямая O₁O₂ перпендикулярна отрезку AB.",
+      "text": "Хорды KL и MN окружности пересекаются в точке P, причём PK = PM. Докажите, что прямые KM и LN параллельны.",
       "code": null,
-      "figure": "<svg viewBox='0 0 350 215' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><circle cx='150' cy='110' r='80' fill='none' stroke='#14213D' stroke-width='2'/><circle cx='265' cy='110' r='65' fill='none' stroke='#14213D' stroke-width='2'/><path d='M150 110 L217 66.2' stroke='#8FB0DA' stroke-width='1.3' stroke-dasharray='5 4' fill='none'/><path d='M150 110 L217 153.8' stroke='#8FB0DA' stroke-width='1.3' stroke-dasharray='5 4' fill='none'/><path d='M265 110 L217 66.2' stroke='#8FB0DA' stroke-width='1.3' stroke-dasharray='5 4' fill='none'/><path d='M265 110 L217 153.8' stroke='#8FB0DA' stroke-width='1.3' stroke-dasharray='5 4' fill='none'/><path d='M150 110 L265 110' stroke='#14213D' stroke-width='2' fill='none'/><path d='M217 66.2 L217 153.8' stroke='#14213D' stroke-width='2' fill='none'/><circle cx='150' cy='110' r='3' fill='#14213D'/><circle cx='265' cy='110' r='3' fill='#14213D'/><circle cx='217' cy='66.2' r='3' fill='#14213D'/><circle cx='217' cy='153.8' r='3' fill='#14213D'/><text x='144' y='130' text-anchor='middle' fill='#14213D'>O<tspan dy='4' font-size='11'>1</tspan></text><text x='271' y='130' text-anchor='middle' fill='#14213D'>O<tspan dy='4' font-size='11'>2</tspan></text><text x='217' y='56.2' text-anchor='middle' fill='#14213D'>A</text><text x='217' y='175.8' text-anchor='middle' fill='#14213D'>B</text></svg>",
+      "figure": "<svg viewBox='0 0 330 230' xmlns='http://www.w3.org/2000/svg' font-family='Arial' font-size='14'><circle cx='165' cy='112' r='90' fill='none' stroke='#14213D' stroke-width='2'/><path d='M80.4 81.2 L228.1 176.1' stroke='#14213D' stroke-width='2' fill='none'/><path d='M233.9 54.1 L127.6 193.9' stroke='#14213D' stroke-width='2' fill='none'/><path d='M80.4 81.2 L233.9 54.1' stroke='#14213D' stroke-width='1.5' fill='none'/><path d='M228.1 176.1 L127.6 193.9' stroke='#14213D' stroke-width='1.5' fill='none'/><circle cx='80.4' cy='81.2' r='3' fill='#14213D'/><text x='66.3' y='81.1' text-anchor='middle' fill='#14213D'>K</text><circle cx='228.1' cy='176.1' r='3' fill='#14213D'/><text x='238.6' y='191.8' text-anchor='middle' fill='#14213D'>L</text><circle cx='233.9' cy='54.1' r='3' fill='#14213D'/><text x='245.4' y='49.5' text-anchor='middle' fill='#14213D'>M</text><circle cx='127.6' cy='193.9' r='3' fill='#14213D'/><text x='121.4' y='212.5' text-anchor='middle' fill='#14213D'>N</text><circle cx='169.7' cy='138.6' r='3' fill='#14213D'/><text x='183.7' y='142.6' text-anchor='middle' fill='#14213D'>P</text></svg>",
       "options": null,
-      "answer": "Точки A и B лежат на первой окружности, поэтому O₁A = O₁B как радиусы. Значит, точка O₁ равноудалена от концов отрезка AB и лежит на серединном перпендикуляре к AB. Точно так же O₂A = O₂B (радиусы второй окружности), и точка O₂ тоже лежит на серединном перпендикуляре к AB. Через две различные точки O₁ и O₂ проходит только одна прямая, поэтому прямая O₁O₂ и есть серединный перпендикуляр к отрезку AB. Следовательно, O₁O₂ перпендикулярна AB, что и требовалось доказать.",
+      "answer": "Треугольник KPM равнобедренный (PK = PM), поэтому ∠PKM = ∠PMK. Вписанные углы KMN и KLN опираются на одну и ту же дугу KN, значит, ∠KMN = ∠KLN. Точка P лежит на хордах MN и KL, поэтому ∠KMN = ∠PMK и ∠KLN = ∠PLN. Получаем ∠MKL = ∠PKM = ∠PMK = ∠KLN. Углы MKL и KLN — накрест лежащие при прямых KM и LN и секущей KL (точки M и N лежат по разные стороны от прямой KL, так как хорда MN пересекает хорду KL). Накрест лежащие углы равны, следовательно, KM ∥ LN, что и требовалось доказать.",
       "unit": "",
       "tol": 0,
       "hints": [
-        "Какие отрезки на рисунке равны? Вспомни, что все радиусы одной окружности равны.",
-        "O₁A = O₁B и O₂A = O₂B. Где лежат все точки, равноудалённые от концов отрезка?",
-        "Обе точки O₁ и O₂ лежат на серединном перпендикуляре к AB, а через две точки проходит только одна прямая."
+        "Отметь на рисунке равные углы. Начни с равнобедренного треугольника KPM.",
+        "∠PKM = ∠PMK. Найди вписанный угол, который опирается на ту же дугу KN, что и угол KMN.",
+        "∠KMN = ∠KLN (опираются на дугу KN). Тогда ∠MKL = ∠KLN — это накрест лежащие углы при прямых KM, LN и секущей KL."
       ],
-      "solution": "Точки A и B лежат на первой окружности, поэтому O₁A = O₁B (радиусы), и точка O₁ лежит на серединном перпендикуляре к отрезку AB. Аналогично O₂A = O₂B, и O₂ тоже лежит на этом серединном перпендикуляре. Через две точки проходит единственная прямая, значит, прямая O₁O₂ — серединный перпендикуляр к AB, и O₁O₂ перпендикулярна AB. Другой способ: треугольники O₁AO₂ и O₁BO₂ равны по трём сторонам, поэтому углы AO₁O₂ и BO₁O₂ равны; в равнобедренном треугольнике AO₁B отрезок O₁O₂ лежит на биссектрисе угла при вершине, а она является и высотой.",
+      "solution": "1) PK = PM, поэтому треугольник KPM равнобедренный и ∠PKM = ∠PMK. 2) Вписанные углы KMN и KLN опираются на одну дугу KN, поэтому ∠KMN = ∠KLN. Точка P лежит на хордах KL и MN, значит, ∠KMN = ∠PMK и ∠KLN = ∠PLN. 3) Отсюда ∠MKL = ∠PKM = ∠PMK = ∠KLN. 4) Углы MKL и KLN — накрест лежащие при прямых KM и LN и секущей KL: точки M и N лежат по разные стороны от KL, так как хорда MN пересекает хорду KL. Накрест лежащие углы равны, следовательно, KM ∥ LN. Замечание: значит, KMLN — вписанная, то есть равнобедренная, трапеция, а из подобия треугольников PKM и PLN следует ещё и PL = PN.",
       "part2": true
     }
   ]
