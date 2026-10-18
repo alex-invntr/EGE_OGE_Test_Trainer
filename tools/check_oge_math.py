@@ -43,7 +43,7 @@ METER = [12480, 12735, 12962, 13170]
 PRICE_KWH = Fraction(640, 100)
 
 # Лодка (P6)
-BOAT_DIST, BOAT_EXTRA_H, RIVER_SPEED = 72, 2, 3
+BOAT_DIST, BOAT_EXTRA_H, RIVER_SPEED = 56, 3, 3
 
 # Координатная прямая (N2, N3): промежутки, в которых по рисунку лежат точки
 N2_A_RANGE, N2_B_RANGE = (-2, -1), (2, 3)
@@ -204,7 +204,7 @@ def solve_num(tasks):
         "N2": n2,
         "N3": n3,
         "N4": float(q ** 12 * (q ** -3) ** 5),
-        "N5": float(unique(sp.solve(sp.Eq(2 * sp.sqrt(l), 3), l), "длина нити")),
+        "N5": float(unique(sp.solve(sp.Eq(5 * sp.Symbol("t", positive=True) ** 2, sp.Rational(245, 4))), "время падения")),
     }
 
 
@@ -217,7 +217,7 @@ def solve_alg(tasks):
     a3 = true_option(tasks["A3"]["options"], lambda o: parse_interval_set(o) == sys_set)
     ineq_set = sp.solveset(X ** 2 + 3 * X - 10 <= 0, X, sp.S.Reals)
     a4 = true_option(tasks["A4"]["options"], lambda o: A4_PICTURES[int(o.split()[-1])] == ineq_set)
-    a5 = sum(sp.solveset(X ** 3 + 3 * X ** 2 - 4 * X - 12, X, sp.S.Reals))
+    a5 = sum(sp.solveset(X ** 3 + 5 * X ** 2 - 16 * X - 80, X, sp.S.Reals))
     a6 = sum(sp.solveset(X ** 4 - (4 * X - 5) ** 2, X, sp.S.Reals))
     return {"A1": float(a1), "A2": float(a2), "A3": a3, "A4": a4, "A5": float(a5), "A6": float(a6)}
 
@@ -300,8 +300,8 @@ def solve_tri():
     shift = (19 - 7) // 2
     t3_h = float(unique(sp.solve(sp.Eq(sp.sqrt(shift ** 2 + h ** 2), 10), h), "высота трапеции"))
     t3 = shoelace([(0, 0), (19, 0), (shift + 7, t3_h), (shift, t3_h)])
-    t4_y = float(unique(sp.solve(sp.Eq(sp.sqrt(12 ** 2 + h ** 2), 13), h), "полудиагональ"))
-    t4 = shoelace([(-12, 0), (0, t4_y), (12, 0), (0, -t4_y)])
+    t4_y = float(unique(sp.solve(sp.Eq(sp.sqrt(15 ** 2 + h ** 2), 17), h), "полудиагональ"))
+    t4 = shoelace([(-15, 0), (0, t4_y), (15, 0), (0, -t4_y)])
     pa, pb, pc = (-9, 0), (0, 12), (9, 0)
     la, lb, lc = dist(pb, pc), dist(pa, pc), dist(pa, pb)
     inc = ((la * pa[0] + lb * pb[0] + lc * pc[0]) / (la + lb + lc), (la * pa[1] + lb * pb[1] + lc * pc[1]) / (la + lb + lc))
