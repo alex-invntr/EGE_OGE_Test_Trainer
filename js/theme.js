@@ -63,7 +63,41 @@ function toggleTheme() {
 
 
 
+// ---------- Свежая версия сайта ----------
+// GitHub Pages разрешает браузеру держать страницу в кэше 10 минут. Если страница из кэша старее опубликованной
+// (её ?v= не совпадает с version.json), открываем тот же адрес с новым параметром — его в кэше нет.
+const VERSION_FILE = "version.json";
+const VERSION_PARAM = "_v";
+const PAGE_VERSION = document.currentScript ? new URL(document.currentScript.src, location.href).searchParams.get("v") : null;
+
+
+
+function checkFreshVersion() {
+    if (location.protocol === "file:" || !PAGE_VERSION || !window.fetch) {
+        return;
+    }
+    fetch(VERSION_FILE + "?t=" + Date.now(), { cache: "no-store" })
+        .then((r) => (r.ok ? r.json() : null))
+        .then((data) => {
+            if (!data || !data.v || data.v === PAGE_VERSION) {
+                return;
+            }
+            const url = new URL(location.href);
+            if (url.searchParams.get(VERSION_PARAM) === data.v) {
+                return;                                     // уже открыли свежий адрес — не зацикливаться
+            }
+            url.searchParams.set(VERSION_PARAM, data.v);
+            location.replace(url.toString());
+        })
+        .catch(() => {
+            // нет сети или файла — работаем с тем, что есть
+        });
+}
+
+
+
 applyTheme(savedTheme());
+checkFreshVersion();
 document.addEventListener("DOMContentLoaded", () => {
     document.querySelectorAll("[data-theme-toggle]").forEach((b) => (b.onclick = toggleTheme));
     updateThemeButtons();

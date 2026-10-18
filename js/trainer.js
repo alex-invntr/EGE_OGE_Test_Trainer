@@ -531,7 +531,7 @@ function showHint() {
     const n = session.hints;
     const div = document.createElement("div");
     div.className = "hint";
-    div.innerHTML = `<b>ПОДСКАЗКА ${n + 1}</b><br>${esc(t.hints[n])}`;
+    div.innerHTML = `<b>ПОДСКАЗКА ${n + 1}</b><br>${esc(formatSteps(t.hints[n]))}`;
     el("hints").appendChild(div);
     session.hints += 1;
     const b = el("b-hint");
@@ -549,11 +549,31 @@ function showHint() {
 
 
 
+// Разбор по пунктам: «… 2) …», «… Б) …» — каждый пункт с новой строки.
+// Внутри незакрытой скобки не переносим: «log₂ (56 : 7)» — это деление, а не пункт 7
+function formatSteps(text) {
+    const s = String(text);
+    return s.replace(/([.;:!?»])[ \t]+(\d{1,2}\)|[А-Е]\))[ \t]/g, (m, punct, item, offset) => {
+        const line = s.slice(s.lastIndexOf("\n", offset) + 1, offset);
+        const open = (line.match(/\(/g) || []).length - (line.match(/\)/g) || []).length;
+        return open > 0 ? m : punct + "\n" + item + " ";
+    }).trim();
+}
+
+
+
+// Решение для показа: пункты с новой строки, итоговое «Ответ: …» в конце убрано — ответ показывается отдельной строкой
+function solutionText(t) {
+    return formatSteps(String(t.solution).replace(/\s*Ответ:\s*[^\n]{1,80}$/, ""));
+}
+
+
+
 function showSolution(t) {
     const box = el("solution");
     box.classList.remove("hidden");
     const ans = t.kind === "text" ? "" : `<span class="ans">Ответ: ${esc(answerText(t))}</span>`;
-    box.innerHTML = `<h4>${t.kind === "text" ? "Образец ответа" : "Разбор"}</h4>${esc(t.kind === "text" ? t.answer : t.solution)}${ans}`;
+    box.innerHTML = `<h4>${t.kind === "text" ? "Образец ответа" : "Разбор"}</h4>${esc(t.kind === "text" ? t.answer : solutionText(t))}${ans}`;
 }
 
 
@@ -583,7 +603,7 @@ function showModelAnswer(t, own) {
     if (notes) {
         const extra = document.createElement("div");
         extra.className = "solution";
-        extra.innerHTML = `<h4>Что важно в ответе</h4>${esc(notes)}`;
+        extra.innerHTML = `<h4>Что важно в ответе</h4>${esc(formatSteps(notes))}`;
         el("solution").after(extra);
     }
     showCriteria(t);
@@ -758,8 +778,8 @@ function showBook() {
                     `<ol class="opts" style="list-style:none;padding-left:0">${t.options.right.map((o) => `<li>${esc(o)}</li>`).join("")}</ol>`;
             }
             const body = t.kind === "text"
-                ? `<b>Образец:</b>\n${esc(t.answer)}${extraNotes(t) ? "\n\n<b>Что важно:</b>\n" + esc(extraNotes(t)) : ""}`
-                : `${esc(t.solution)}<span class="ans">Ответ: ${esc(answerText(t))}</span>`;
+                ? `<b>Образец:</b>\n${esc(t.answer)}${extraNotes(t) ? "\n\n<b>Что важно:</b>\n" + esc(formatSteps(extraNotes(t))) : ""}`
+                : `${esc(solutionText(t))}<span class="ans">Ответ: ${esc(answerText(t))}</span>`;
             return `<div class="book-task">
                 <div class="head"><b>${t.id}</b><span>${esc(t.format)}</span><span>· ${esc(t.level)}</span><button class="open" data-id="${t.id}">Решать</button></div>
                 <p class="text">${esc(t.text)}</p>

@@ -34,8 +34,8 @@ input[type=text], textarea, select { background: var(--card); color: var(--ink);
 .hero p { margin: 4px 0 0; color: var(--muted); font-size: 15.5px; }
 .lead { color: var(--muted); font-size: 15px; line-height: 1.5; }
 .exam-block { margin-top: 26px; }
-.exam-block h2 { display: flex; align-items: baseline; gap: 10px; margin: 0 0 12px; font-size: 22px; }
-.exam-block h2 small { font-size: 14px; color: var(--muted); font-weight: 500; }
+.exam-block h2 { display: flex; align-items: baseline; gap: 12px; margin: 0 0 14px; font-size: 30px; line-height: 1.15; }
+.exam-block h2 small { font-size: 18px; color: var(--muted); font-weight: 500; }
 .subjects { display: grid; grid-template-columns: repeat(4, 1fr); gap: 14px; }
 .subj { display: flex; flex-direction: column; gap: 8px; text-decoration: none; color: var(--ink); background: var(--card); border: 1px solid var(--line); border-top: 5px solid var(--c); border-radius: 12px; padding: 14px 16px 16px; box-shadow: 2px 2px 0 var(--shadow); transition: transform 0.12s, box-shadow 0.12s; }
 .subj:hover { transform: translateY(-2px); box-shadow: 3px 5px 0 var(--shadow); }

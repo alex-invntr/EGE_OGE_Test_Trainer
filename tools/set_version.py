@@ -1,4 +1,4 @@
-# Номер версии для стилей, скриптов и банков задач: «?v=…» в ссылках HTML и ASSET_VERSION в js/common.js.
+# Номер версии для стилей, скриптов и банков задач: «?v=…» в ссылках HTML, ASSET_VERSION в js/common.js и version.json.
 # GitHub Pages разрешает браузерам кэшировать файлы на 10 минут; новая версия в адресе заставляет скачать свежие.
 # Запуск из корня проекта перед коммитом: python tools/set_version.py [версия]; без версии — текущие дата и время.
 
@@ -13,6 +13,7 @@ if hasattr(sys.stdout, "reconfigure"):
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 PAGES = ["index.html", "trainer.html", "guide.html", "howto.html"]
 COMMON_JS = os.path.join("js", "common.js")
+VERSION_JSON = "version.json"
 ASSET_RE = re.compile(r'(src|href)="((?:css|js|banks)/[^"?]+\.(?:css|js))(?:\?v=[^"]*)?"')
 CONST_RE = re.compile(r'const ASSET_VERSION = "[^"]*";')
 
@@ -39,7 +40,10 @@ def main():
         sys.exit(1)
     with open(path, "w", encoding="utf-8", newline="\n") as f:
         f.write(src)
-    print(f"версия {version}: ссылок {total}, ASSET_VERSION обновлена")
+    # version.json — его читает js/theme.js, чтобы обновить страницу, если браузер показал старую из кэша
+    with open(os.path.join(ROOT, VERSION_JSON), "w", encoding="utf-8", newline="\n") as f:
+        f.write('{"v": "' + version + '"}\n')
+    print(f"версия {version}: ссылок {total}, ASSET_VERSION и {VERSION_JSON} обновлены")
 
 
 
