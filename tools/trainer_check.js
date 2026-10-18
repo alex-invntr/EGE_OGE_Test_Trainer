@@ -180,6 +180,7 @@ async function checkScenarios(page, id) {
         document.getElementById("b-ai").click();
         const prompt = document.getElementById("m-text").value;
         out.prompt = prompt.includes("Не давай готового решения") && prompt.includes(BANK.examName) && prompt.includes(t.text.slice(0, 30));
+        out.ai = Array.from(document.querySelectorAll("#m-ai a")).map((a) => new URL(a.href).host).join(" ");
         document.getElementById("m-close").click();
         out.modalClosed = document.getElementById("modal").classList.contains("hidden");
         // ошибка → очередь повторения; после срока — кнопка «Повторить ошибки»
@@ -214,6 +215,7 @@ async function checkScenarios(page, id) {
     check(r.hints === 3 && r.hintBtn === "Показать решение", `${id}: три подсказки → «Показать решение»`);
     check(r.solutionAfterHints, `${id}: после подсказок открывается решение`);
     check(r.prompt && r.modalClosed, `${id}: запрос к ИИ содержит условие и правило «не давай решения»`);
+    check(r.ai === "claude.ai gemini.google.com chat.deepseek.com", `${id}: кнопки ИИ в окне запроса: ${r.ai}`);
     check(r.dueSet && r.reviewEnabled && r.reviewTask, `${id}: ошибка уходит в повторение и возвращается`);
     check(r.bookTasks === r.total && r.bookFigures === r.figures, `${id}: задачник — ${r.bookTasks} из ${r.total} задач, рисунков ${r.bookFigures} из ${r.figures}`);
     check(!r.overflow, `${id}: задачник не шире карточки`);

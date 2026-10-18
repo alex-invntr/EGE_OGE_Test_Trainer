@@ -180,6 +180,9 @@ table.res th { font-size: 11.5px; letter-spacing: 1px; text-transform: uppercase
 .m-actions { display: flex; gap: 8px; margin-top: 10px; flex-wrap: wrap; }
 .m-actions button, .m-actions a { padding: 9px 16px; border-radius: 8px; border: 1px solid var(--line); background: var(--card); font-weight: 600; text-decoration: none; color: var(--ink); font-size: 15px; }
 .m-actions .primary { background: var(--btn); color: #fff; border-color: var(--btn); }
+.m-ai { display: contents; }
+.m-label { align-self: center; margin-left: 6px; color: var(--muted); font-size: 14px; }
+#m-close { margin-left: auto; }
 .m-note { margin: 12px 0 0; font-size: 13px; color: var(--muted); }
 .error-box { max-width: 640px; margin: 60px auto; }
 

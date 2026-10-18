@@ -6,7 +6,12 @@ const EXAM_TIMER_MS = 1000;
 const LONG_RIGHT_ITEM = 40;                                 // варианты соответствия длиннее — показываются списком
 const PREVIEW_CHARS = 90;
 const COPY_FEEDBACK_MS = 1500;
-const ASSISTANT_URL = "https://claude.ai/new";
+// ИИ-помощники в окне «Спроси ИИ»: кнопка копирует запрос и открывает чат в новой вкладке
+const ASSISTANTS = [
+    { name: "Claude", url: "https://claude.ai/new" },
+    { name: "Gemini", url: "https://gemini.google.com/app" },
+    { name: "DeepSeek", url: "https://chat.deepseek.com/" },
+];
 
 let BANK = null;                                            // текущий банк задач
 let BANK_ID = "";
@@ -925,7 +930,9 @@ function setupPage(bank) {
     el("side-sources").innerHTML = "Ещё задания: " + sourceLinks(BANK_ID);
     el("m-close").onclick = closeModal;
     el("m-copy").onclick = copyPrompt;
-    el("m-open").href = ASSISTANT_URL;
+    el("m-ai").innerHTML = `<span class="m-label">Открыть:</span>` +
+        ASSISTANTS.map((a) => `<a href="${a.url}" target="_blank" rel="noopener">${esc(a.name)} ↗</a>`).join("");
+    el("m-ai").querySelectorAll("a").forEach((a) => (a.onclick = copyPrompt));
     el("modal").onclick = (e) => {
         if (e.target === el("modal")) {
             closeModal();
