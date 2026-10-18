@@ -893,7 +893,7 @@ function showLoadError(msg) {
 // Подключить банк задач скриптом — так работает и с диска (file://), и с GitHub Pages
 function loadBank(id, onReady) {
     const s = document.createElement("script");
-    s.src = "banks/" + id + ".js";
+    s.src = "banks/" + id + ".js?v=" + ASSET_VERSION;
     s.onload = () => {
         if (window.BANKS && window.BANKS[id]) {
             onReady(window.BANKS[id]);
